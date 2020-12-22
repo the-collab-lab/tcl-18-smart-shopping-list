@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c127bb77-2d98-4652-8dc2-69e898cfe5c5/deploy-status)](https://app.netlify.com/sites/tcl-18-smart-shopping-list/deploys)
+
 # Overview
 
 ## What is this project?
