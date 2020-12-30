@@ -2,7 +2,7 @@
 .
 ## Cohort Participants
 - Alejandro M. Coca
-- Cristina Rueda
+- Cristina Rueda.
 ## Mentors
 .
 ## Code of Conduct Contacts
