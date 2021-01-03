@@ -10,6 +10,6 @@
 
 ## Mentors
 - Indira Gutierrez
-.
+- Lizeth Bañol
 
 ## Code of Conduct Contacts
