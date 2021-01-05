@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import AddItem from './components/AddItem';
+import ListView from './components/ListView/index'
 import Nav from './components/Nav';
 
 function Routes() {
@@ -8,7 +8,7 @@ function Routes() {
     <Router>
       <div className="app-container">
         <Switch>
-          <Route path="/add-item" component={AddItem} />
+          <Route exact path="/list-view" component={ListView} />
         </Switch>
         <Nav />
       </div>
