@@ -8,7 +8,7 @@ function Nav() {
     <nav className="navigator">
       <ul>
         <li>
-          <NavLink to="/list" activeClassName="selected">
+          <NavLink to="/list-view" activeClassName="selected">
             List
           </NavLink>
         </li>
