@@ -12,6 +12,13 @@ a.selected {
   font-weight: bold;
 }
 
+.navigator {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 3rem;
+}
+
 .navigator ul {
   list-style-type: none;
   padding: 0;
