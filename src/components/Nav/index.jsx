@@ -14,7 +14,7 @@ function Nav() {
         </li>
         <li>
           <NavLink to="/add-item" activeClassName="selected">
-            AddItem
+            Add Item
           </NavLink>
         </li>
       </ul>
