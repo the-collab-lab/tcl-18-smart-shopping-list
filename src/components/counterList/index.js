@@ -1,9 +1,9 @@
 import React from 'react';
 // Firebase
-import { db } from '../../lib/firebase.js';
+import { db } from 'lib/firebase.js';
 import { useCollection } from 'react-firebase-hooks/firestore';
 
-import Counter from '../counter';
+import Counter from 'components/counter';
 
 function CounterList() {
   const query = db.collection('counters');
