@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { db } from '../../lib/firebase.js';
+import { db } from 'lib/firebase.js';
 
 function Counter({ id, name, currentValue }) {
   const incrementValue = () => {

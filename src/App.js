@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import CounterList from './components/couterList';
+import CounterList from 'components/counterList';
 
 function App() {
   return (
