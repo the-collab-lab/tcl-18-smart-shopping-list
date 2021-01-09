@@ -1,13 +1,12 @@
 import React from 'react';
+import Routes from './Router';
 import './App.css';
-import CounterList from 'components/counterList';
 
 function App() {
   return (
     <div className="App">
-      <CounterList />
+      <Routes />
     </div>
   );
 }
-
 export default App;
