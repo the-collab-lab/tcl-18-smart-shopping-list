@@ -8,6 +8,11 @@ function Nav() {
     <nav className="navigator">
       <ul>
         <li>
+          <NavLink to="/" activeClassName="selected">
+            Home
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/list-view" activeClassName="selected">
             List
           </NavLink>
