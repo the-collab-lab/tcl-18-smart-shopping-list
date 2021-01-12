@@ -11,7 +11,7 @@ function Home() {
   const compareTokens = (token) => {
     let currentToken = token;
     if (storedToken === currentToken) {
-      history.push('/view-list');
+      history.push('/list-view');
       setIsAuth(true);
     } else {
       setUserToken('');

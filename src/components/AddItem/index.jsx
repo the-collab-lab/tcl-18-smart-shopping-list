@@ -1,11 +1,13 @@
+import { FormProduct } from 'components/FormProduct';
 import React from 'react';
 
-function addItem() {
+function AddItem() {
   return (
     <div>
-      <h2>Add Item</h2>
+      <h1>Smart Shopping list</h1>
+      <FormProduct tokenID="exampleToken" />
     </div>
   );
 }
 
-export default addItem;
+export default AddItem;
