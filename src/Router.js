@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import ListView from './components/ListView/index';
 import AddItem from './components/AddItem/index';
-import CounterList from 'components/counterList';
 import Nav from './components/Nav';
 
 function Routes() {
@@ -14,7 +13,6 @@ function Routes() {
           <Route exact path="/home" component={Home} />
           <Route exact path="/list-view" component={ListView} />
           <Route exact path="/add-item" component={AddItem} />
-          <Route exact path="/counter" component={CounterList} />
         </Switch>
         <Nav />
       </div>
