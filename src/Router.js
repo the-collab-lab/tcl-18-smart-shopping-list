@@ -10,7 +10,7 @@ function Routes() {
     <Router>
       <div className="app-container">
         <Switch>
-          <Route exact path="/home" component={Home} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/list-view" component={ListView} />
           <Route exact path="/add-item" component={AddItem} />
         </Switch>

@@ -15,7 +15,7 @@ function Home() {
       setIsAuth(true);
     } else {
       setUserToken('');
-      history.push('/home');
+      history.push('/');
       setIsAuth(false);
     }
   };
@@ -29,14 +29,15 @@ function Home() {
     <>
       <form onSubmit={handleSubmit}>
         <label>
-          token:
+          Join an existing shopping list
           <input
             type="text"
+            placeholder="Enter a token"
             value={userToken}
             onChange={(e) => setUserToken(e.target.value)}
           />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Join List" />
       </form>
       {!isAuth && <p>'Invalid Token. Try again!'</p>}
     </>
