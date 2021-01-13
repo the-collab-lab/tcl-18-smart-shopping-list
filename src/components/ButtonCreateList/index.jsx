@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 function ButtonCreateList() {
   let history = useHistory();
-  const createNewList = function() {
+    const createNewList = function() {
     const Token = getToken()
     localStorage.setItem("Token", Token);
     history.push("/list-view");
