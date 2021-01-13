@@ -7,9 +7,8 @@ function PrivateRoute({ children, ...rest }) {
   const hasToken = checkTokenLocalStorage();
   // Analysis: Which places can we visit? or Maybe, a redirect?
   const analysisRoute = ({ location }) => {
-    const conditionToRedirect = hasToken === true;
     // Visit or redirect?
-    return conditionToRedirect ? (
+    return hasToken ? (
       children
     ) : (
       <Redirect
