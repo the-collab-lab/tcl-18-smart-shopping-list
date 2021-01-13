@@ -20,8 +20,15 @@ export const FormProduct = ({ tokenID }) => {
 
   const handleSubmitProduct = (e) => {
     e.preventDefault();
-    addProduct(products);
-    console.log(products);
+    let { token, item, nextPurchase, LastPurchasedDate } = products;
+    const editedProduct = {
+      token,
+      item,
+      nextPurchase: Number(nextPurchase),
+      LastPurchasedDate,
+    };
+    addProduct(editedProduct);
+    console.log(editedProduct);
     setProduct({ ...inicialStateProduct });
   };
 
