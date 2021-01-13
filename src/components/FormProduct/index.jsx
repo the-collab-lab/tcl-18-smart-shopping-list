@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addProduct } from 'components/Firestone.js';
+import { addProduct } from 'components/Utils/firestore.js';
 
 export const FormProduct = ({ tokenID }) => {
   const inicialStateProduct = {
