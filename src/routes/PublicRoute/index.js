@@ -7,7 +7,7 @@ function PublicRoute({ children, ...rest }) {
   const hasToken = checkTokenLocalStorage();
   // Analysis: Which places can we visit? or Maybe, a redirect?
   const analysisRoute = ({ location }) => {
-    const conditionToRedirect = hasToken === true && location.pathname === '/';
+    const conditionToRedirect = hasToken && location.pathname === '/';
     // Visit or redirect?
     return conditionToRedirect ? (
       <Redirect
