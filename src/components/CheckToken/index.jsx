@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function CheckToken() {
@@ -28,9 +28,14 @@ function CheckToken() {
     compareTokens(userToken);
   };
 
-  setTimeout(() => {
-    setOnNotification(false);
-  }, 3000);
+  useEffect(() => {
+    if (onNotification) {
+      setTimeout(() => {
+        setOnNotification(false);
+        setIsAuth(false);
+      }, 3000);
+    }
+  }, [isAuth, onNotification]);
 
   return (
     <>
