@@ -2,10 +2,11 @@ import { db } from 'lib/firebase';
 
 //Create a product in the dataBase
 export const addProduct = (objectProduct) => {
-  // add firestone
-  db.collection('products').doc().set(objectProduct);
+  const token = localStorage.getItem('Token');
+  db.collection(token).doc().set(objectProduct);
 };
 
-export const getProductsByToken = (token) => {
-  return db.collection('products').where('token', '==', token);
+export const getProducts = () => {
+  const token = localStorage.getItem('Token');
+  return db.collection(token);
 };
