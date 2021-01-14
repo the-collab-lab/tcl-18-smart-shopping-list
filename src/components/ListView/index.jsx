@@ -1,10 +1,9 @@
 import React from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { token } from 'components/Utils/localStorage';
-import { getProductsByToken } from 'components/Utils/firestore';
+import { getProducts } from 'components/Utils/firestore';
 
 function ListView() {
-  const query = getProductsByToken(token);
+  const query = getProducts();
   const [values, loading, error] = useCollection(query);
 
   return (
