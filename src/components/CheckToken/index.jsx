@@ -7,6 +7,7 @@ function CheckToken() {
   const [storedToken] = useState(() => localStorage.getItem('Token'));
   const [userToken, setUserToken] = useState('');
   const [isAuth, setIsAuth] = useState(true);
+  const [onNotification, setOnNotification] = useState(false);
 
   const compareTokens = (token) => {
     let currentToken = token;
@@ -15,16 +16,22 @@ function CheckToken() {
       setIsAuth(true);
     } else {
       setUserToken('');
-      history.push('/');
+      setOnNotification(true);
       setIsAuth(false);
+      history.push('/');
     }
   };
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(userToken);
     compareTokens(userToken);
   };
+
+  setTimeout(() => {
+    setOnNotification(false);
+  }, 3000);
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -38,7 +45,7 @@ function CheckToken() {
         </label>
         <input type="submit" value="Join List" />
       </form>
-      {!isAuth && <p>'Invalid Token. Try again!'</p>}
+      {!isAuth && onNotification && <p>'Invalid Token. Try again!'</p>}
     </>
   );
 }
