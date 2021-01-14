@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { addProduct } from 'components/Utils/firestore.js';
 
-export const FormProduct = ({ tokenID }) => {
+export const FormProduct = () => {
   const inicialStateProduct = {
-    token: tokenID,
     item: '',
     nextPurchase: 0,
     LastPurchasedDate: null,
@@ -20,9 +19,8 @@ export const FormProduct = ({ tokenID }) => {
 
   const handleSubmitProduct = (e) => {
     e.preventDefault();
-    let { token, item, nextPurchase, LastPurchasedDate } = products;
+    let { item, nextPurchase, LastPurchasedDate } = products;
     const editedProduct = {
-      token,
       item,
       nextPurchase: Number(nextPurchase),
       LastPurchasedDate,
