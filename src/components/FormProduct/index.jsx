@@ -5,12 +5,12 @@ export const FormProduct = () => {
   const inicialStateProduct = {
     item: '',
     nextPurchase: 0,
-    LastPurchasedDate: null,
+    lastPurchasedDate: null,
   };
 
   const [products, setProduct] = useState(inicialStateProduct);
 
-  const [error, updateError] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleInputProduct = (e) => {
     setProduct({
@@ -21,19 +21,19 @@ export const FormProduct = () => {
 
   const handleSubmitProduct = (e) => {
     e.preventDefault();
-    let { item, nextPurchase, LastPurchasedDate } = products;
+    let { item, nextPurchase, lastPurchasedDate } = products;
 
     if (item.trim() === '' || nextPurchase === 0) {
-      updateError(true);
+      setError(true);
       return;
     }
 
-    updateError(false);
+    setError(false);
 
     const editedProduct = {
       item,
       nextPurchase: Number(nextPurchase),
-      LastPurchasedDate,
+      lastPurchasedDate,
     };
     addProduct(editedProduct);
     setProduct({ ...inicialStateProduct });
@@ -56,6 +56,7 @@ export const FormProduct = () => {
         </div>
         <div>
           <label>How soon will you buy this again?</label>
+          <br />
           <input
             onChange={handleInputProduct}
             type="radio"
