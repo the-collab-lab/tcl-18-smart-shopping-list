@@ -17,11 +17,6 @@ function Nav() {
             Add Item
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/counter" activeClassName="selected">
-            Counters
-          </NavLink>
-        </li>
       </ul>
     </nav>
   );
