@@ -1,9 +1,11 @@
-import React from 'react'
-import ButtonCreateList from 'components/ButtonCreateList'
+import React from 'react';
+import ButtonCreateList from 'components/ButtonCreateList';
+import CheckToken from 'components/CheckToken';
 
 const Home = () => (
   <section className="Home">
-      <ButtonCreateList/>
+    <ButtonCreateList />
+    <CheckToken />
   </section>
-)
-export default Home
+);
+export default Home;
