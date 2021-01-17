@@ -9,15 +9,19 @@ import PrivateRoute from 'routes/PrivateRoute';
 function AppRoutes() {
   return (
     <Switch>
-      <PublicRoute exact path="/">
-        <Home />
-      </PublicRoute>
-      <PrivateRoute exact path="/list-view">
-        <ListView />
-      </PrivateRoute>
-      <PrivateRoute exact path="/add-item">
-        <AddItem />
-      </PrivateRoute>
+      <PublicRoute exact path="/" withTokenPath="/list-view" component={Home} />
+      <PrivateRoute
+        exact
+        path="/list-view"
+        withoutTokenPath="/"
+        component={ListView}
+      />
+      <PrivateRoute
+        exact
+        path="/add-item"
+        withoutTokenPath="/"
+        component={AddItem}
+      />
     </Switch>
   );
 }
