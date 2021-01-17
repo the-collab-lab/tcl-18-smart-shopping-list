@@ -2,26 +2,26 @@ import React, { useState } from 'react';
 import { addProduct } from 'components/Utils/firestore.js';
 
 export const FormProduct = () => {
-  const inicialStateProduct = {
+  const initialStateProduct = {
     item: '',
     nextPurchase: 0,
     lastPurchasedDate: null,
   };
 
-  const [products, setProduct] = useState(inicialStateProduct);
+  const [product, setProduct] = useState(initialStateProduct);
 
   const [error, setError] = useState(false);
 
   const handleInputProduct = (e) => {
     setProduct({
-      ...products,
+      ...product,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmitProduct = (e) => {
     e.preventDefault();
-    let { item, nextPurchase, lastPurchasedDate } = products;
+    let { item, nextPurchase, lastPurchasedDate } = product;
 
     if (item.trim() === '' || nextPurchase === 0) {
       setError(true);
@@ -36,7 +36,7 @@ export const FormProduct = () => {
       lastPurchasedDate,
     };
     addProduct(editedProduct);
-    setProduct({ ...inicialStateProduct });
+    setProduct({ ...initialStateProduct });
   };
 
   return (
@@ -51,7 +51,7 @@ export const FormProduct = () => {
             placeholder="Add A Product"
             autoComplete="off"
             name="item"
-            value={products.item}
+            value={product.item}
           />
         </div>
         <div>

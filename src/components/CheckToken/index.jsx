@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 function CheckToken() {
   let history = useHistory();
 
-  const [storedToken] = useState(() => localStorage.getItem('Token'));
+  const [storedToken] = useState(() => localStorage.getItem('tcl18-token'));
   const [userToken, setUserToken] = useState('');
   const [isAuth, setIsAuth] = useState(true);
   const [onNotification, setOnNotification] = useState(false);
