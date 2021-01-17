@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function CheckToken() {
-  let history = useHistory();
+  const history = useHistory();
 
   const [storedToken] = useState(() => localStorage.getItem('tcl18-token'));
   const [userToken, setUserToken] = useState('');

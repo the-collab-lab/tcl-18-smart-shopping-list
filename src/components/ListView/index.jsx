@@ -17,10 +17,7 @@ function ListView() {
             <div>
               {values.docs.map((doc) => (
                 <div key={doc.id}>
-                  <p>
-                    {doc.data().item.charAt(0).toUpperCase() +
-                      doc.data().item.slice(1)}
-                  </p>
+                  <p>{doc.data().item}</p>
                 </div>
               ))}
             </div>
