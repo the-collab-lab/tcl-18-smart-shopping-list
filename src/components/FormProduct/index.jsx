@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { addProduct } from 'components/Utils/firestore.js';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { getProducts } from 'components/Utils/firestore';
 
 export const FormProduct = () => {
+  const query = getProducts();
+  const [values] = useCollection(query);
   const initialStateProduct = {
     item: '',
     nextPurchase: 0,
@@ -10,25 +14,37 @@ export const FormProduct = () => {
 
   const [product, setProduct] = useState(initialStateProduct);
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
 
   const handleInputProduct = (e) => {
     setProduct({
       ...product,
       [e.target.name]: e.target.value,
     });
+    setError(e.target.value ? '' : 'All fields are required') //Valida al momento de cada cambio
   };
 
   const handleSubmitProduct = (e) => {
     e.preventDefault();
-    let { item, nextPurchase, lastPurchasedDate } = product;
+    const { item, nextPurchase, lastPurchasedDate } = product;
 
     if (item.trim() === '' || nextPurchase === 0) {
-      setError(true);
+      setError('All fields are required'); //Valida inmediato, al momento del clic
       return;
     }
 
-    setError(false);
+    // setError('');
+    const normalizedItem = item
+      .trim()
+      .toLowerCase()
+      .replace(/[a-zA-Z]+/g, '')
+    const items = values.docs.map((doc) => doc.data().item)
+    const existCurrentItem = items.find((citem) => citem === normalizedItem)
+
+    if (existCurrentItem) {
+      setError('Ya existe este item')
+      return 
+    } 
 
     const editedProduct = {
       item,
@@ -41,7 +57,7 @@ export const FormProduct = () => {
 
   return (
     <div>
-      {error ? <p>All fields are required</p> : null}
+      {error && <p>{error}</p> }
       <form onSubmit={handleSubmitProduct}>
         <div>
           <label>Item name: </label>
