@@ -22,10 +22,17 @@ export const FormProduct = () => {
       ...product,
       [e.target.name]: e.target.value,
     });
+    setError(e.target.value ? '' : 'All fields are required') //Required field. Immediate validation
   };
   const handleSubmitProduct = (e) => {
     e.preventDefault();
     const { item, nextPurchase, lastPurchasedDate } = product;
+    
+    //Required field. Immediate validation
+    // if (item.trim() === '' || nextPurchase === 0) {
+    //   setError('All fields are required'); 
+    //   return;
+    // }
 
     //duplication validation
     const normalizedItemInput = item
