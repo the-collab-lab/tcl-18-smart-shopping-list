@@ -5,7 +5,7 @@ import { getProducts } from 'components/Utils/firestore';
 
 export const FormProduct = () => {
   const query = getProducts();
-  const [values] = useCollection(query);
+  const [products] = useCollection(query);
 
   const initialStateProduct = {
     item: '',
@@ -28,14 +28,13 @@ export const FormProduct = () => {
     const { item, nextPurchase, lastPurchasedDate } = product;
 
     //duplication validation
-    let normalizedItem = item;
-    normalizedItem = normalizedItem
+    const normalizedItemInput = item
       .trim()
       .toLowerCase()
       .match(/[^_\W]+/g)
       .join(' ');
-    const normalizedItemDatabase = () => {
-      const items = values.docs.map((doc) =>
+    const productExists = () => {
+      const normalizedItemsDb = products.docs.map((doc) =>
         doc
           .data()
           .item.trim()
@@ -43,11 +42,10 @@ export const FormProduct = () => {
           .match(/[^_\W]+/g)
           .join(' '),
       );
-      return items.includes(normalizedItem);
+      return normalizedItemsDb.includes(normalizedItemInput);
     };
 
-    if (normalizedItemDatabase())
-      return setError('The item is already on the list');
+    if (productExists()) return setError('The item is already on the list');
 
     const editedProduct = {
       item,
