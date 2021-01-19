@@ -1,11 +1,11 @@
 import React from 'react';
 import ButtonCreateList from 'components/ButtonCreateList';
-import CheckToken from 'components/CheckToken';
+import FormJoinList from 'components/FormJoinList';
 
 const Home = () => (
   <section className="Home">
     <ButtonCreateList />
-    <CheckToken />
+    <FormJoinList />
   </section>
 );
 export default Home;
