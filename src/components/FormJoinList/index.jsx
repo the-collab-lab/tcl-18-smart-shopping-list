@@ -1,28 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { db } from 'lib/firebase';
+import { validateToken } from 'components/Utils/firestore';
+import { useCollection } from 'react-firebase-hooks/firestore';
+
 function FormJoinList() {
   const history = useHistory();
   const [userToken, setUserToken] = useState('');
   const [onNotification, setOnNotification] = useState(false);
-  const checkTokenInFirebase = (e) => {
-    e.preventDefault();
-    console.log(userToken);
-    if (userToken !== '') {
-      var listByToken = db.collection(userToken);
-      if (listByToken !== null) {
-        console.log(listByToken);
-        localStorage.setItem('tcl18-token', userToken);
-        history.push('/list-view');
-      } else {
-        setUserToken('');
-        setOnNotification(true);
-      }
-    } else {
-      setUserToken('');
-      setOnNotification(true);
-    }
-  };
+  const query = validateToken(userToken || ' ');
+  const [values] = useCollection(query);
+  const [isTokenValid, setIsTokenValid] = useState(false);
+
   useEffect(() => {
     if (onNotification) {
       setTimeout(() => {
@@ -30,6 +18,24 @@ function FormJoinList() {
       }, 3000);
     }
   }, [onNotification]);
+
+  useEffect(() => {
+    if (values) {
+      setIsTokenValid(values.docs.length ? true : false);
+    }
+  }, [userToken, values]);
+
+  const checkTokenInFirebase = (e) => {
+    e.preventDefault();
+    if (userToken !== '' && isTokenValid) {
+      localStorage.setItem('tcl18-token', userToken);
+      history.push('/list-view');
+    } else {
+      setUserToken('');
+      setOnNotification(true);
+    }
+  };
+
   return (
     <>
       <form onSubmit={checkTokenInFirebase}>
@@ -43,7 +49,7 @@ function FormJoinList() {
         </label>
         <input type="submit" value="Join List" />
       </form>
-      {onNotification && <p>'Invalid Token. Try again!'</p>}
+      {onNotification && !isTokenValid ? <p>Invalid Token. Try again!</p> : ''}
     </>
   );
 }

@@ -10,3 +10,5 @@ export const getProducts = () => {
   const token = localStorage.getItem('tcl18-token');
   return db.collection(token);
 };
+
+export const validateToken = (key = '') => db.collection(key);
