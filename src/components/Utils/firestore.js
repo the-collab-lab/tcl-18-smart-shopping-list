@@ -11,4 +11,12 @@ export const getProducts = () => {
   return db.collection(token);
 };
 
-export const validateToken = (key = '') => db.collection(key);
+export const existCollectionByToken = async (userToken) => {
+  const collectionRefByToken = db.collection(userToken || ' ');
+  try {
+    const response = await collectionRefByToken.get();
+    return !response.empty;
+  } catch (e) {
+    return false;
+  }
+};
