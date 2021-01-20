@@ -23,10 +23,7 @@ function FormJoinList() {
 
   return (
     <div>
-      <form
-        onSubmit={joinToListShared}
-        aria-label="Form for enter a token shared"
-      >
+      <form onSubmit={joinToListShared}>
         <label>
           <input
             type="text"
@@ -36,29 +33,22 @@ function FormJoinList() {
             onKeyPress={() => setShowErrorMessage(false)}
           />
         </label>
-        <input type="submit" value="Join List" aria-label="Join List" />
+        <input type="submit" value="Join List" />
       </form>
-      <div
-        role="region"
-        id="tokenInfo"
-        aria-label="App messages"
-        aria-live="polite"
-      >
-        {loading ? (
-          <p id="tokenChecking" aria-live="polite">
-            Checking token shared.
-          </p>
-        ) : (
-          ''
-        )}
-        {showErrorMessage ? (
-          <p id="tokenInvalid" aria-live="assertive">
-            Invalid Token. Try again!.
-          </p>
-        ) : (
-          ''
-        )}
-      </div>
+      {loading ? (
+        <p id="tokenChecking" aria-live="polite">
+          Checking token shared.
+        </p>
+      ) : (
+        ''
+      )}
+      {showErrorMessage ? (
+        <p id="tokenInvalid" aria-live="assertive">
+          Invalid Token. Try again!.
+        </p>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
