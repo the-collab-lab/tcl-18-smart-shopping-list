@@ -27,32 +27,25 @@ export const FormProduct = () => {
   const handleSubmitProduct = (e) => {
     e.preventDefault();
     const { item, nextPurchase, lastPurchasedDate } = product;
-    
-    //Required field. Immediate validation
-    // if (item.trim() === '' || nextPurchase === 0) {
-    //   setError('All fields are required'); 
-    //   return;
-    // }
 
+    String.prototype.normalizeItem = function () {
+      return this.trim()
+        .toLowerCase()
+        .match(/[^_\W]+/g)
+        .join(' ');
+    };
     //duplication validation
-    const normalizedItemInput = item
-      .trim()
-      .toLowerCase()
-      .match(/[^_\W]+/g)
-      .join(' ');
-    const productExists = () => {
+    const normalizedItemInput = item.normalizeItem();
+
+    const productExists = (products, normalizedItemInput) => {
       const normalizedItemsDb = products.docs.map((doc) =>
-        doc
-          .data()
-          .item.trim()
-          .toLowerCase()
-          .match(/[^_\W]+/g)
-          .join(' '),
+        doc.data().item.normalizeItem(),
       );
       return normalizedItemsDb.includes(normalizedItemInput);
     };
 
-    if (productExists()) return setError('The item is already on the list');
+    if (productExists(products, normalizedItemInput))
+      return setError('The item is already on the list');
 
     const editedProduct = {
       item,
