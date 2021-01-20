@@ -22,7 +22,7 @@ export const FormProduct = () => {
       ...product,
       [e.target.name]: e.target.value,
     });
-    setError(e.target.value ? '' : 'All fields are required') //Required field. Immediate validation
+    setError(e.target.value ? '' : <span aria-live="polite">All fields are required</span>)  //Required field. Immediate validation
   };
   const handleSubmitProduct = (e) => {
     e.preventDefault();
