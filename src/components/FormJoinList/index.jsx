@@ -1,56 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { validateToken } from 'components/Utils/firestore';
-import { useCollection } from 'react-firebase-hooks/firestore';
+import { existCollectionByToken } from 'components/Utils/firestore';
 
 function FormJoinList() {
   const history = useHistory();
   const [userToken, setUserToken] = useState('');
-  const [onNotification, setOnNotification] = useState(false);
-  const query = validateToken(userToken || ' ');
-  const [values] = useCollection(query);
-  const [isTokenValid, setIsTokenValid] = useState(false);
-
-  useEffect(() => {
-    if (onNotification) {
-      setTimeout(() => {
-        setOnNotification(false);
-      }, 3000);
-    }
-  }, [onNotification]);
-
-  useEffect(() => {
-    if (values) {
-      setIsTokenValid(values.docs.length ? true : false);
-    }
-  }, [userToken, values]);
-
-  const checkTokenInFirebase = (e) => {
+  const [loading, setLoading] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const joinToListShared = async (e) => {
     e.preventDefault();
-    if (userToken !== '' && isTokenValid) {
+    setLoading(true);
+    const existsCollection = await existCollectionByToken(userToken);
+    setLoading(false);
+    if (userToken !== '' && existsCollection) {
       localStorage.setItem('tcl18-token', userToken);
       history.push('/list-view');
     } else {
       setUserToken('');
-      setOnNotification(true);
+      setShowErrorMessage(true);
     }
   };
 
   return (
-    <>
-      <form onSubmit={checkTokenInFirebase}>
+    <div>
+      <form
+        onSubmit={joinToListShared}
+        aria-label="Form for enter a token shared"
+      >
         <label>
           <input
             type="text"
             placeholder="Enter a token"
             value={userToken}
             onChange={(e) => setUserToken(e.target.value)}
+            onKeyPress={() => setShowErrorMessage(false)}
           />
         </label>
-        <input type="submit" value="Join List" />
+        <input type="submit" value="Join List" aria-label="Join List" />
       </form>
-      {onNotification && !isTokenValid ? <p>Invalid Token. Try again!</p> : ''}
-    </>
+      <div
+        role="region"
+        id="tokenInfo"
+        aria-label="App messages"
+        aria-live="polite"
+      >
+        {loading ? (
+          <p id="tokenChecking" aria-live="polite">
+            Checking token shared.
+          </p>
+        ) : (
+          ''
+        )}
+        {showErrorMessage ? (
+          <p id="tokenInvalid" aria-live="assertive">
+            Invalid Token. Try again!.
+          </p>
+        ) : (
+          ''
+        )}
+      </div>
+    </div>
   );
 }
 export default FormJoinList;
