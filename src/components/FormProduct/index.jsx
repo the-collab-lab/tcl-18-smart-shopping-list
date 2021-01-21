@@ -34,12 +34,6 @@ export const FormProduct = () => {
     const { item, nextPurchase, lastPurchasedDate } = product;
 
     //duplication validation
-    String.prototype.normalizeItem = function () {
-      return this.trim()
-        .toLowerCase()
-        .match(/[^_\W]+/g)
-        .join('');
-    };
     const normalizedItemInput = item.normalizeItem();
 
     if (productExists(products, normalizedItemInput))
