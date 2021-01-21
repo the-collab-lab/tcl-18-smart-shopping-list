@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { addProduct } from 'components/Utils/firestore.js';
+import { addProduct, productExists } from 'components/Utils/firestore.js';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { getProducts } from 'components/Utils/firestore';
-
+import 'components/Utils/normalizeItem';
 export const FormProduct = () => {
   const query = getProducts();
   const [products] = useCollection(query);
@@ -16,33 +16,31 @@ export const FormProduct = () => {
   const [product, setProduct] = useState(initialStateProduct);
 
   const [error, setError] = useState('');
-
   const handleInputProduct = (e) => {
     setProduct({
       ...product,
       [e.target.name]: e.target.value,
     });
-    setError(e.target.value ? '' : <span aria-live="polite">All fields are required</span>)  //Required field. Immediate validation
+    setError(
+      e.target.value ? (
+        ''
+      ) : (
+        <span aria-live="polite">All fields are required</span>
+      ),
+    ); //Required field. Immediate validation
   };
   const handleSubmitProduct = (e) => {
     e.preventDefault();
     const { item, nextPurchase, lastPurchasedDate } = product;
 
+    //duplication validation
     String.prototype.normalizeItem = function () {
       return this.trim()
         .toLowerCase()
         .match(/[^_\W]+/g)
-        .join(' ');
+        .join('');
     };
-    //duplication validation
     const normalizedItemInput = item.normalizeItem();
-
-    const productExists = (products, normalizedItemInput) => {
-      const normalizedItemsDb = products.docs.map((doc) =>
-        doc.data().item.normalizeItem(),
-      );
-      return normalizedItemsDb.includes(normalizedItemInput);
-    };
 
     if (productExists(products, normalizedItemInput))
       return setError('The item is already on the list');
