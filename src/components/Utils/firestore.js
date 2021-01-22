@@ -1,4 +1,5 @@
 import { db } from 'lib/firebase';
+import {normalizeItem} from 'components/Utils/helpers';
 
 //Create a product in the dataBase
 export const addProduct = (objectProduct) => {
@@ -13,7 +14,7 @@ export const getProducts = () => {
 
 export const productExists = (products, normalizedItemInput) => {
   const normalizedItemsDb = products.docs.map((doc) =>
-    doc.data().item.normalizeItem(),
+    normalizeItem(doc.data().item),
   );
   return normalizedItemsDb.includes(normalizedItemInput);
 };
