@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { existCollectionByToken } from 'components/Utils/firestore';
 
-function FormJoinList() {
+function JoinListForm() {
   const history = useHistory();
   const [userToken, setUserToken] = useState('');
   const [loading, setLoading] = useState(false);
@@ -35,21 +35,13 @@ function FormJoinList() {
         </label>
         <input type="submit" value="Join List" />
       </form>
-      {loading ? (
-        <p id="tokenChecking" aria-live="polite">
-          Checking token shared.
-        </p>
-      ) : (
-        ''
-      )}
+      {loading ? <p aria-live="polite">Checking token shared.</p> : ''}
       {showErrorMessage ? (
-        <p id="tokenInvalid" aria-live="assertive">
-          Invalid Token. Try again!.
-        </p>
+        <p aria-live="assertive">Invalid Token. Try again!.</p>
       ) : (
         ''
       )}
     </div>
   );
 }
-export default FormJoinList;
+export default JoinListForm;

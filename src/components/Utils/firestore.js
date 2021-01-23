@@ -17,6 +17,6 @@ export const existCollectionByToken = async (userToken) => {
     const response = await collectionRefByToken.get();
     return !response.empty;
   } catch (e) {
-    return false;
+    console.error(e);
   }
 };
