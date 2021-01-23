@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { addProduct, productExists } from 'components/Utils/firestore.js';
+import { addProduct, getProducts } from 'components/Utils/firestore.js';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { getProducts } from 'components/Utils/firestore';
-import {normalizeItem} from 'components/Utils/helpers';
+import { productExists } from 'components/Utils/helpers';
 export const FormProduct = () => {
   const query = getProducts();
   const [products] = useCollection(query);
@@ -31,18 +30,16 @@ export const FormProduct = () => {
   };
   const handleSubmitProduct = (e) => {
     e.preventDefault();
-    const { item, nextPurchase, lastPurchasedDate } = product;
+    const { item, nextPurchase } = product;
 
     //duplication validation
-    const normalizedItemInput = normalizeItem(item);
 
-    if (productExists(products, normalizedItemInput))
+    if (productExists(products, item))
       return setError('The item is already on the list');
 
     const editedProduct = {
-      item,
+      ...product,
       nextPurchase: Number(nextPurchase),
-      lastPurchasedDate,
     };
     addProduct(editedProduct);
     setProduct({ ...initialStateProduct });
