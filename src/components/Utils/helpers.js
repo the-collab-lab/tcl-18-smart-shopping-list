@@ -1,5 +1,5 @@
-export function normalizeItem(String) {
-  return String.trim()
+export function normalizeItem(item) {
+  return item.trim()
     .toLowerCase()
     .match(/[^_\W]+/g)
     .join('');
