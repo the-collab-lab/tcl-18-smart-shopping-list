@@ -10,3 +10,13 @@ export const getProducts = () => {
   const token = localStorage.getItem('tcl18-token');
   return db.collection(token);
 };
+
+export const existCollectionByToken = async (userToken) => {
+  const collectionRefByToken = db.collection(userToken || ' ');
+  try {
+    const response = await collectionRefByToken.get();
+    return !response.empty;
+  } catch (e) {
+    console.error(e);
+  }
+};
