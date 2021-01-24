@@ -1,5 +1,4 @@
 import { db } from 'lib/firebase';
-
 //Create a product in the dataBase
 export const addProduct = (objectProduct) => {
   const token = localStorage.getItem('tcl18-token');

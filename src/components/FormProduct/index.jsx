@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { addProduct } from 'components/Utils/firestore.js';
-
+import { addProduct, getProducts } from 'components/Utils/firestore.js';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { isProductDuplicated } from 'components/Utils/helpers';
 export const FormProduct = () => {
+  const query = getProducts();
+  const [products] = useCollection(query);
+
   const initialStateProduct = {
     item: '',
     nextPurchase: 0,
@@ -10,30 +14,30 @@ export const FormProduct = () => {
 
   const [product, setProduct] = useState(initialStateProduct);
 
-  const [error, setError] = useState(false);
-
+  const [error, setError] = useState('');
   const handleInputProduct = (e) => {
     setProduct({
       ...product,
       [e.target.name]: e.target.value,
     });
+    setError(
+      e.target.value ? (
+        ''
+      ) : (
+        <span aria-live="polite">All fields are required</span>
+      ),
+    ); 
   };
-
   const handleSubmitProduct = (e) => {
     e.preventDefault();
-    let { item, nextPurchase, lastPurchasedDate } = product;
+    const { item, nextPurchase } = product;
 
-    if (item.trim() === '' || nextPurchase === 0) {
-      setError(true);
-      return;
-    }
-
-    setError(false);
+    if (isProductDuplicated(products, item))
+      return setError('The item is already on the list');
 
     const editedProduct = {
-      item,
+      ...product,
       nextPurchase: Number(nextPurchase),
-      lastPurchasedDate,
     };
     addProduct(editedProduct);
     setProduct({ ...initialStateProduct });
@@ -41,7 +45,7 @@ export const FormProduct = () => {
 
   return (
     <div>
-      {error ? <p>All fields are required</p> : null}
+      {error && <p>{error}</p>}
       <form onSubmit={handleSubmitProduct}>
         <div>
           <label>Item name: </label>
@@ -50,6 +54,7 @@ export const FormProduct = () => {
             type="text"
             placeholder="Add A Product"
             autoComplete="off"
+            required="required"
             name="item"
             value={product.item}
           />
@@ -60,6 +65,7 @@ export const FormProduct = () => {
           <input
             onChange={handleInputProduct}
             type="radio"
+            required="required"
             name="nextPurchase"
             value={7}
           />
@@ -68,6 +74,7 @@ export const FormProduct = () => {
           <input
             onChange={handleInputProduct}
             type="radio"
+            required="required"
             name="nextPurchase"
             value={14}
           />
@@ -76,6 +83,7 @@ export const FormProduct = () => {
           <input
             onChange={handleInputProduct}
             type="radio"
+            required="required"
             name="nextPurchase"
             value={30}
           />
