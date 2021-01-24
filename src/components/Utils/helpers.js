@@ -5,7 +5,7 @@ export function normalizeItem(item) {
     .join('');
 }
 
-export const productExists = (products, item) => {
+export const isProductDuplicated = (products, item) => {
   const normalizedItemInput = normalizeItem(item);
 
   const normalizedItemsDb = products.docs.map((doc) =>

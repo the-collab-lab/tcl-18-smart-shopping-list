@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { addProduct, getProducts } from 'components/Utils/firestore.js';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { productExists } from 'components/Utils/helpers';
+import { isProductDuplicated } from 'components/Utils/helpers';
 export const FormProduct = () => {
   const query = getProducts();
   const [products] = useCollection(query);
@@ -26,15 +26,13 @@ export const FormProduct = () => {
       ) : (
         <span aria-live="polite">All fields are required</span>
       ),
-    ); //Required field. Immediate validation
+    ); 
   };
   const handleSubmitProduct = (e) => {
     e.preventDefault();
     const { item, nextPurchase } = product;
 
-    //duplication validation
-
-    if (productExists(products, item))
+    if (isProductDuplicated(products, item))
       return setError('The item is already on the list');
 
     const editedProduct = {
