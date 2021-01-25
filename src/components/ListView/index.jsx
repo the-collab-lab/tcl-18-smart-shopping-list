@@ -1,6 +1,8 @@
 import React from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { getProducts } from 'components/Utils/firestore';
+import EmptyList from 'components/EmptyList';
+import ProductList from 'components/ProductList';
 
 function ListView() {
   const query = getProducts();
@@ -8,22 +10,14 @@ function ListView() {
 
   return (
     <div>
-      <h2>List</h2>
-      <div>
-        {error && <strong>Error: {JSON.stringify(error)}</strong>}
-        {loading && <span>List: Loading...</span>}
-        {values && (
-          <span>
-            <div>
-              {values.docs.map((doc) => (
-                <div key={doc.id}>
-                  <p>{doc.data().item}</p>
-                </div>
-              ))}
-            </div>
-          </span>
-        )}
-      </div>
+      <h2>Smart Shopping List</h2>
+      {error && <strong>Error: {JSON.stringify(error)}</strong>}
+      {loading && <span>List: Loading...</span>}
+      {!loading && values.empty ? (
+        <EmptyList />
+      ) : (
+        <ProductList values={values} />
+      )}
     </div>
   );
 }
