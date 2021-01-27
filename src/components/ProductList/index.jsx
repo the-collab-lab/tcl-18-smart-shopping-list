@@ -10,7 +10,7 @@ function ProductList({ values }) {
             {values.docs.map((doc) => (
               <div key={doc.id}>
                 {/* <p>{doc.data().item}</p> */}
-                <ItemList itemName={doc.data().item} docId={doc.id} />
+                <ItemList itemName={doc.data().item} docId={doc.id} lastPurchasedDate={doc.data().lastPurchasedDate}/>
               </div>
             ))}
           </div>
