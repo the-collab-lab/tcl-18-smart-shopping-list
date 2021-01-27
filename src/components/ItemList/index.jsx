@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
+import { updateItemDate } from '../Utils/firestore';
 
 function ItemList({ itemName, docId }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [token] = useState(() => window.localStorage.getItem('tcl18-token'));
   const toggle = () => setIsChecked(!isChecked);
 
-  const editProduct = (product, id) => {
-    console.log(product, id);
-    //usar el servicio de FB para editar
-    /*{
-            producto,
-            fecha: Date.now();
-        }*/
+  const editProduct = (id) => {
+    updateItemDate(token, id).then(() => console.log('product updated'));
   };
 
   //TODO
@@ -21,7 +18,7 @@ function ItemList({ itemName, docId }) {
   const handleCheckbox = (event) => {
     toggle();
     if (event.target.checked) {
-      editProduct(event.target.value, docId);
+      editProduct(docId);
       setIsDisabled(true);
     }
   };
