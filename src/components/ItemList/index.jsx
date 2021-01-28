@@ -14,7 +14,7 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
   
   useEffect(() => {
     if(isChecked) {
-      updateItemDate(token, docId).then(() => console.log('La fecha fue actualizada'))
+      updateItemDate(token, docId).then(() => console.log('The date was updated'))
     }
   },[isChecked, docId, token])
 
@@ -24,8 +24,8 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
           new Date (), 
           lastPurchasedDate.toDate());
           // console.log('hoursAtTheMoment', hoursAtTheMoment, lastPurchasedDate.toDate());
-      setIsDisabled(hoursAtTheMoment <= 24)
-      setIsChecked(hoursAtTheMoment <= 24)
+      setIsDisabled(hoursAtTheMoment <= 12)
+      setIsChecked(hoursAtTheMoment <= 12)
     }
   },[isDisabled, lastPurchasedDate])
 
