@@ -6,9 +6,8 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [token] = useState(() => window.localStorage.getItem('tcl18-token'));
-  const toggle = () => setIsChecked(!isChecked);
 
-  const editProduct = (id) => {
+  const MarkProductPurshased = (id) => {
     updateItemDate(token, id)
       .then(() => {
         console.log('product updated');
@@ -17,14 +16,6 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
         console.log(error);
       });
   };
-
-  useEffect(() => {
-    if (isChecked) {
-      updateItemDate(token, docId).then(() =>
-        console.log('The date was updated'),
-      );
-    }
-  }, [isChecked, docId, token]);
 
   useEffect(() => {
     if (lastPurchasedDate && isDisabled === false) {
@@ -38,9 +29,9 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
   }, [isDisabled, lastPurchasedDate]);
 
   const handleCheckbox = (event) => {
-    toggle();
+    setIsChecked(!isChecked);
     if (event.target.checked) {
-      editProduct(docId);
+      MarkProductPurshased(docId);
       setIsDisabled(true);
     }
   };
