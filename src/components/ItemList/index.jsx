@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { updateItemDate } from '../Utils/firestore';
-import { differenceInHours } from 'date-fns';
+import { differenceInMilliseconds } from 'date-fns';
 
 function ItemList({ itemName, docId, lastPurchasedDate }) {
   const [isChecked, setIsChecked] = useState(false);
@@ -19,12 +19,13 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
 
   useEffect(() => {
     if (lastPurchasedDate && isDisabled === false) {
-      const hoursAtTheMoment = differenceInHours(
+      const hoursAtTheMoment = differenceInMilliseconds(
         new Date(),
         lastPurchasedDate.toDate(),
       );
-      setIsDisabled(hoursAtTheMoment <= 12);
-      setIsChecked(hoursAtTheMoment <= 12);
+      console.log(hoursAtTheMoment)
+      setIsDisabled(hoursAtTheMoment <= 43200000);
+      setIsChecked(hoursAtTheMoment <= 43200000);
     }
   }, [isDisabled, lastPurchasedDate]);
 
