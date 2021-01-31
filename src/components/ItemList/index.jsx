@@ -27,7 +27,7 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
     if (date) return true;
   };
 
-  const MarkProductPurshased = (id) => {
+  const MarkProductPurchased = (id) => {
     updateItemDate(token, id)
       .then(() => {
         console.log('product updated');
@@ -40,7 +40,7 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
   const handleCheckbox = (event) => {
     setIsChecked(!isChecked);
     if (event.target.checked) {
-      MarkProductPurshased(docId);
+      MarkProductPurchased(docId);
       setIsDisabled(true);
     }
   };
