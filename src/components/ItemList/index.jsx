@@ -37,9 +37,10 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
 
   return (
     <>
-      <span>
+      <label for={itemName}>
         <input
           type="checkbox"
+          name={itemName}
           checked={isChecked}
           value={itemName}
           onChange={handleCheckbox}
@@ -47,7 +48,7 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
         />
 
         {itemName}
-      </span>
+      </label>
     </>
   );
 }
