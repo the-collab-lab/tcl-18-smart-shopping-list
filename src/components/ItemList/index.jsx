@@ -6,16 +6,26 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [token] = useState(() => window.localStorage.getItem('tcl18-token'));
+  const [formattedDate, setFormattedDate] = useState(0);
 
   useEffect(() => {
-    if (isWithin24hours(lastPurchasedDate)) {
+    let date;
+    if (isDateValid(lastPurchasedDate)) {
+      date = lastPurchasedDate;
+      setFormattedDate(date.toMillis());
+    }
+    if (isWithin24hours(formattedDate)) {
       setIsChecked(false);
       setIsDisabled(false);
     } else {
       setIsChecked(true);
       setIsDisabled(true);
     }
-  }, [lastPurchasedDate]);
+  }, [formattedDate, lastPurchasedDate]);
+
+  const isDateValid = (date) => {
+    if (date) return true;
+  };
 
   const MarkProductPurshased = (id) => {
     updateItemDate(token, id)

@@ -11,7 +11,7 @@ function ProductList({ values }) {
               <ItemList
                 itemName={doc.data().item}
                 docId={doc.id}
-                lastPurchasedDate={doc.data().lastPurchasedDate.toMillis()}
+                lastPurchasedDate={doc.data().lastPurchasedDate || ''}
               />
             </div>
           ))}
