@@ -1,12 +1,12 @@
 import React from 'react';
 import ItemList from 'components/ItemList';
 
-function ProductList({ values }) {
-  return (
-    <>
+function ProductList({ values, products }) {
+  return products ? (
+    <div>
       {values && (
         <div>
-          {values.docs.map((doc) => (
+          {products.values.docs.map((doc) => (
             <div key={doc.id}>
               <ItemList
                 itemName={doc.data().item}
@@ -17,8 +17,8 @@ function ProductList({ values }) {
           ))}
         </div>
       )}
-    </>
-  );
+    </div>
+  ): null;
 }
 
 export default ProductList;
