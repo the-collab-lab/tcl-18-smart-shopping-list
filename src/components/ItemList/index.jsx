@@ -37,7 +37,7 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
 
   return (
     <>
-      <label for={itemName}>
+      <label htmlFor={itemName}>
         <input
           type="checkbox"
           name={itemName}
