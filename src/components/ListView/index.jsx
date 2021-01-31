@@ -12,7 +12,7 @@ function ListView() {
       <h2>Smart Shopping List</h2>
       <div>
         {error && <strong>Error: {JSON.stringify(error)}</strong>}
-        {loading && <span>List: Loading...</span>}
+        {loading && <p>List: Loading...</p>}
       </div>
       <ProductList values={values} />
     </>
