@@ -1,17 +1,13 @@
 import React from 'react';
 
-function ProductList({ values }) {
-  return (
-    <>
-      {values && (
-        <div>
-          {values.docs.map((doc) => (
-            <p key={doc.id}>{doc.data().item}</p>
-          ))}
-        </div>
-      )}
-    </>
-  );
+function ProductList({ products }) {
+  return products ? (
+    <div>
+      {products.map((doc) => (
+        <p key={doc.id}>{doc.data().item}</p>
+      ))}
+    </div>
+  ) : null;
 }
 
 export default ProductList;

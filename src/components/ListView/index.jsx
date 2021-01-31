@@ -16,7 +16,7 @@ function ListView() {
       {!loading && values.empty ? (
         <EmptyList />
       ) : (
-        <ProductList values={values} />
+        <ProductList products={values ? values.docs : []} />
       )}
     </div>
   );
