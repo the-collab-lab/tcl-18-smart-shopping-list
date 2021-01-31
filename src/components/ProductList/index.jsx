@@ -2,19 +2,15 @@ import React from 'react';
 
 function ProductList({ values }) {
   return (
-    <div>
+    <>
       {values && (
-        <span>
-          <div>
-            {values.docs.map((doc) => (
-              <div key={doc.id}>
-                <p>{doc.data().item}</p>
-              </div>
-            ))}
-          </div>
-        </span>
+        <div>
+          {values.docs.map((doc) => (
+            <p key={doc.id}>{doc.data().item}</p>
+          ))}
+        </div>
       )}
-    </div>
+    </>
   );
 }
 
