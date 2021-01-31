@@ -8,20 +8,18 @@ function ListView() {
   const query = getProducts();
   const [values, loading, error] = useCollection(query);
 
+  console.log(values);
   return (
-    <>
+    <div>
       <h2>Smart Shopping List</h2>
-      <div>
-        {error && <strong>Error: {JSON.stringify(error)}</strong>}
-        {loading && <p>List: Loading...</p>}
-      </div>
-      <ProductList values={values} />
+      {error && <strong>Error: {JSON.stringify(error)}</strong>}
+      {loading && <p>List: Loading...</p>}
       {!loading && values.empty ? (
         <EmptyList />
       ) : (
-        <ProductList values={values} />
+        <ProductList products={values ? values.docs : []} />
       )}
-    </>
+    </div>
   );
 }
 export default ListView;
