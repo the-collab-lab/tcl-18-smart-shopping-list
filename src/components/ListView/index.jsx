@@ -8,7 +8,6 @@ function ListView() {
   const query = getProducts();
   const [values, loading, error] = useCollection(query);
 
-  console.log(values);
   return (
     <div>
       <h2>Smart Shopping List</h2>
@@ -17,7 +16,7 @@ function ListView() {
       {!loading && values.empty ? (
         <EmptyList />
       ) : (
-        <ProductList products={values ? values.docs : []} />
+        <ProductList products={values} />
       )}
     </div>
   );
