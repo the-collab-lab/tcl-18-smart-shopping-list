@@ -1,8 +1,8 @@
 import React from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { getProducts } from 'components/Utils/firestore';
-import EmptyList from 'components/EmptyList';
 import ProductList from 'components/ProductList';
+import EmptyList from 'components/EmptyList';
 
 function ListView() {
   const query = getProducts();
@@ -16,7 +16,7 @@ function ListView() {
       {!loading && values.empty ? (
         <EmptyList />
       ) : (
-        <ProductList products={values ? values.docs : []} />
+        <ProductList products={values} />
       )}
     </div>
   );

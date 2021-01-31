@@ -19,3 +19,7 @@ export const existCollectionByToken = async (userToken) => {
     console.error(e);
   }
 };
+
+export const updateItemDate = (token, id) => {
+  return db.collection(token).doc(id).update({ lastPurchasedDate: new Date() });
+};

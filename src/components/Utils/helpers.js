@@ -1,5 +1,6 @@
 export function normalizeItem(item) {
-  return item.trim()
+  return item
+    .trim()
     .toLowerCase()
     .match(/[^_\W]+/g)
     .join('');
@@ -12,4 +13,11 @@ export const isProductDuplicated = (products, item) => {
     normalizeItem(doc.data().item),
   );
   return normalizedItemsDb.includes(normalizedItemInput);
+};
+
+export const isWithin24hours = (lastPurchasedDate) => {
+  const currentDate = +new Date();
+  const oneDay = 60 * 60 * 24 * 1000;
+  const isOutdated = currentDate - lastPurchasedDate > oneDay;
+  return isOutdated;
 };
