@@ -36,6 +36,7 @@ function ListView() {
       <br />
       <form onReset={resetFilter}>
         <label htmlFor="nameFilter">Filter items</label>
+        <br />
         <input
           type="text"
           id="nameFilter"
@@ -44,14 +45,14 @@ function ListView() {
         />
         <input type="reset" value="Clear" />
       </form>
+      <br />
       {error && <strong>Error: {JSON.stringify(error)}</strong>}
       {loading && <p>List: Loading...</p>}
-      {/* {!loading ? (
+      {!loading && productsFiltered.length === 0 ? (
         <EmptyList />
       ) : (
-          <ProductList products={productsFiltered} />
-        )} */}
-      <ProductList products={productsFiltered} />
+        <ProductList products={productsFiltered} />
+      )}
     </div>
   );
 }
