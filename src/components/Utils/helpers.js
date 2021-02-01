@@ -6,6 +6,10 @@ export function normalizeItem(item) {
     .join('');
 }
 
+export const isThereCoincidence = (fullText = '', textToFind = '') => {
+  return fullText.toLowerCase().includes(textToFind.toLowerCase());
+};
+
 export const isProductDuplicated = (products, item) => {
   const normalizedItemInput = normalizeItem(item);
 

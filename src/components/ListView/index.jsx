@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { getProducts } from 'components/Utils/firestore';
-import { convertCollectionToArray } from 'components/Utils/helpers';
+import {
+  convertCollectionToArray,
+  isThereCoincidence,
+} from 'components/Utils/helpers';
 import ProductList from 'components/ProductList';
 import EmptyList from 'components/EmptyList';
 
@@ -19,11 +22,10 @@ function ListView() {
     const arrayProducts = convertCollectionToArray(collectionProducts);
     setProductsFiltered(arrayProducts);
     if (!loading && nameFilter.length > 0) {
-      const p = arrayProducts.filter((product) =>
-        product.item.includes(nameFilter),
-      );
       setProductsFiltered(
-        arrayProducts.filter((product) => product.item.includes(nameFilter)),
+        arrayProducts.filter((product) =>
+          isThereCoincidence(product.item, nameFilter),
+        ),
       );
     }
   }, [nameFilter, values, loading]);
