@@ -21,3 +21,10 @@ export const isWithin24hours = (lastPurchasedDate) => {
   const isOutdated = currentDate - lastPurchasedDate > oneDay;
   return isOutdated;
 };
+
+export const convertCollectionToArray = (collection = []) => {
+  return collection.map((document) => {
+    const id = document.id;
+    return { id, ...document.data() };
+  });
+};
