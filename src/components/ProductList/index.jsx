@@ -11,7 +11,9 @@ function ProductList({ products }) {
               <ItemList
                 itemName={doc.data().item}
                 docId={doc.id}
+                nextPurchase={doc.data().nextPurchase}
                 lastPurchasedDate={doc.data().lastPurchasedDate || ''}
+                numberOfPurchases={doc.data().numberOfPurchases}
               />
             </div>
           ))}

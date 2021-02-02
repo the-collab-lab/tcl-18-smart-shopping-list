@@ -20,6 +20,18 @@ export const existCollectionByToken = async (userToken) => {
   }
 };
 
-export const updateItemDate = (token, id) => {
-  return db.collection(token).doc(id).update({ lastPurchasedDate: new Date() });
+export const updateItemDate = (
+  token,
+  id,
+  numberOfPurchases,
+  estimatesDaysNextPurchased,
+) => {
+  return db
+    .collection(token)
+    .doc(id)
+    .update({
+      lastPurchasedDate: new Date(),
+      numberOfPurchases: numberOfPurchases + 1,
+      estimatesDaysNextPurchased: estimatesDaysNextPurchased,
+    });
 };

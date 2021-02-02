@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { updateItemDate } from '../Utils/firestore';
 import { isWithin24hours } from 'components/Utils/helpers';
-
-function ItemList({ itemName, docId, lastPurchasedDate }) {
+const { default: calculateEstimate } = require('lib/estimates');
+function ItemList({
+  itemName,
+  docId,
+  nextPurchase,
+  lastPurchasedDate,
+  numberOfPurchases,
+}) {
   const [isChecked, setIsChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [token] = useState(() => window.localStorage.getItem('tcl18-token'));
@@ -27,8 +33,20 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
     if (date) return true;
   };
 
+  const latestInterval = () => {
+    const currentDate = +new Date();
+    const oneDay = 60 * 60 * 24 * 1000;
+    return Math.floor((currentDate - formattedDate) / oneDay);
+  };
+  const dayLatestInterval = latestInterval();
+
+  const estimatesDaysNextPurchased = calculateEstimate(
+    nextPurchase,
+    dayLatestInterval,
+    numberOfPurchases,
+  );
   const MarkProductPurchased = (id) => {
-    updateItemDate(token, id)
+    updateItemDate(token, id, numberOfPurchases, estimatesDaysNextPurchased)
       .then(() => {
         console.log('product updated');
       })
@@ -39,6 +57,7 @@ function ItemList({ itemName, docId, lastPurchasedDate }) {
 
   const handleCheckbox = (event) => {
     setIsChecked(!isChecked);
+
     if (event.target.checked) {
       MarkProductPurchased(docId);
       setIsDisabled(true);
