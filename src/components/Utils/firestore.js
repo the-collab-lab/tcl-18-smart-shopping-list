@@ -1,4 +1,5 @@
 import { db } from 'lib/firebase';
+
 //Create a product in the dataBase
 export const addProduct = (objectProduct) => {
   const token = localStorage.getItem('tcl18-token');
@@ -31,7 +32,7 @@ export const updateItemDate = (
     .doc(id)
     .update({
       lastPurchasedDate: new Date(),
-      numberOfPurchases: numberOfPurchases + 1,
+      numberOfPurchases: Number(numberOfPurchases) + 1,
       estimatesDaysNextPurchased: estimatesDaysNextPurchased,
     });
 };
