@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { updateItemDate } from '../Utils/firestore';
-import { isWithin24hours } from 'components/Utils/helpers';
+import { isWithin24hours, latestInterval } from 'components/Utils/helpers';
 const { default: calculateEstimate } = require('lib/estimates');
 function ItemList({
   itemName,
@@ -34,13 +34,11 @@ function ItemList({
     if (date) return true;
   };
 
-  const latestInterval = () => {
-    const currentDate = +new Date();
-    const oneDay = 60 * 60 * 24 * 1000;
-    const dayInterval = Math.floor((currentDate - formattedDate) / oneDay);
-    return numberOfPurchases === 0 ? nextPurchase : dayInterval;
-  };
-  const dayLatestInterval = latestInterval();
+  const dayLatestInterval = latestInterval(
+    formattedDate,
+    numberOfPurchases,
+    nextPurchase,
+  );
 
   const estimatedNextPurchase = calculateEstimate(
     estimatedDaysNextPurchase,
