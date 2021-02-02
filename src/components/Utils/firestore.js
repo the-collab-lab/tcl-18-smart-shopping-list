@@ -32,7 +32,7 @@ export const updateItemDate = (
     .doc(id)
     .update({
       lastPurchasedDate: new Date(),
-      numberOfPurchases: Number(numberOfPurchases) + 1,
+      numberOfPurchases: numberOfPurchases + 1,
       estimatesDaysNextPurchased: estimatesDaysNextPurchased,
     });
 };
