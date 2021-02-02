@@ -24,7 +24,7 @@ export const updateItemDate = (
   token,
   id,
   numberOfPurchases,
-  estimatesDaysNextPurchased,
+  estimatedDaysNextPurchase,
 ) => {
   return db
     .collection(token)
@@ -32,6 +32,6 @@ export const updateItemDate = (
     .update({
       lastPurchasedDate: new Date(),
       numberOfPurchases: numberOfPurchases + 1,
-      estimatesDaysNextPurchased: estimatesDaysNextPurchased,
+      estimatedDaysNextPurchase: estimatedDaysNextPurchase,
     });
 };

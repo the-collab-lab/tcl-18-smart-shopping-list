@@ -14,6 +14,7 @@ function ProductList({ products }) {
                 nextPurchase={doc.data().nextPurchase}
                 lastPurchasedDate={doc.data().lastPurchasedDate || ''}
                 numberOfPurchases={doc.data().numberOfPurchases}
+                estimatedDaysNextPurchase={doc.data().estimatedDaysNextPurchase}
               />
             </div>
           ))}

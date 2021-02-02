@@ -8,6 +8,7 @@ function ItemList({
   nextPurchase,
   lastPurchasedDate,
   numberOfPurchases,
+  estimatedDaysNextPurchase,
 }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -36,17 +37,18 @@ function ItemList({
   const latestInterval = () => {
     const currentDate = +new Date();
     const oneDay = 60 * 60 * 24 * 1000;
-    return Math.floor((currentDate - formattedDate) / oneDay);
+    const dayInterval = Math.floor((currentDate - formattedDate) / oneDay);
+    return numberOfPurchases === 0 ? nextPurchase : dayInterval;
   };
   const dayLatestInterval = latestInterval();
 
-  const estimatesDaysNextPurchased = calculateEstimate(
-    nextPurchase,
+  const estimatedNextPurchase = calculateEstimate(
+    estimatedDaysNextPurchase,
     dayLatestInterval,
     numberOfPurchases,
   );
   const MarkProductPurchased = (id) => {
-    updateItemDate(token, id, numberOfPurchases, estimatesDaysNextPurchased)
+    updateItemDate(token, id, numberOfPurchases, estimatedNextPurchase)
       .then(() => {
         console.log('product updated');
       })
