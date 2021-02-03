@@ -9,13 +9,11 @@ import ProductList from 'components/ProductList';
 import EmptyList from 'components/EmptyList';
 
 function ListView() {
+  const [productsFiltered, setProductsFiltered] = useState([]);
   const [nameFilter, setNameFilter] = useState('');
   const query = getProducts();
   const [values, loading, error] = useCollection(query);
   const handleInput = (e) => setNameFilter(e.target.value);
-  const resetFilter = () => setNameFilter('');
-
-  const [productsFiltered, setProductsFiltered] = useState([]);
 
   useEffect(() => {
     const collectionProducts = values ? values.docs : [];
@@ -34,22 +32,23 @@ function ListView() {
     <div>
       <h2>Smart Shopping List</h2>
       <br />
-      <form onReset={resetFilter}>
+      <form>
         <label htmlFor="nameFilter">Filter items</label>
         <br />
         <input
-          type="text"
+          type="search"
           id="nameFilter"
           placeholder="Start typing here..."
+          value={nameFilter}
           onChange={handleInput}
         />
-        <input type="reset" value="Clear" />
       </form>
       <br />
-      {error && <strong>Error: {JSON.stringify(error)}</strong>}
-      {loading && <p>List: Loading...</p>}
-      {!loading && productsFiltered.length === 0 ? (
-        <EmptyList />
+      {error && <p aria-live="assertive">Error: {JSON.stringify(error)}</p>}
+      {loading && <p aria-live="polite">List: Loading...</p>}
+      {!loading && values.empty && <EmptyList />}
+      {!loading && !values.empty && productsFiltered.length === 0 ? (
+        <p aria-live="assertive">Not found products by name: '{nameFilter}'</p>
       ) : (
         <ProductList products={productsFiltered} />
       )}
