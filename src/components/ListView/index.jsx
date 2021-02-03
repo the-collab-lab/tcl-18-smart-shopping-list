@@ -27,21 +27,25 @@ function ListView() {
       );
     }
   }, [nameFilter, values, loading]);
+  
+  const currentProducts = values ? values.docs : [];
 
   return (
     <div>
       <h2>Smart Shopping List</h2>
       <br />
       <form>
+        {!!currentProducts.length && 
+        <>
         <label htmlFor="nameFilter">Filter items</label>
-        <br />
+        <br /> 
         <input
           type="search"
           id="nameFilter"
           placeholder="Start typing here..."
           value={nameFilter}
           onChange={handleInput}
-        />
+        /></>}
       </form>
       <br />
       {error && <p aria-live="assertive">Error: {JSON.stringify(error)}</p>}
