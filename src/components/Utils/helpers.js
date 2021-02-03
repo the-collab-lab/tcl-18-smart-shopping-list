@@ -6,10 +6,6 @@ export function normalizeItem(item) {
     .join('');
 }
 
-export const isThereCoincidence = (fullText = '', textToFind = '') => {
-  return fullText.toLowerCase().includes(textToFind.toLowerCase());
-};
-
 export const isProductDuplicated = (products, item) => {
   const normalizedItemInput = normalizeItem(item);
 
@@ -26,9 +22,6 @@ export const isWithin24hours = (lastPurchasedDate) => {
   return isOutdated;
 };
 
-export const convertCollectionToArray = (collection = []) => {
-  return collection.map((document) => {
-    const id = document.id;
-    return { id, ...document.data() };
-  });
+export const isThereCoincidence = (fullText = '', textToFind = '') => {
+  return fullText.toLowerCase().includes(textToFind.toLowerCase());
 };

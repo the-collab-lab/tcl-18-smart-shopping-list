@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { getProducts } from 'components/Utils/firestore';
 import {
+  getProducts,
   convertCollectionToArray,
-  isThereCoincidence,
-} from 'components/Utils/helpers';
+} from 'components/Utils/firestore';
+import { isThereCoincidence } from 'components/Utils/helpers';
 import ProductList from 'components/ProductList';
 import EmptyList from 'components/EmptyList';
 
