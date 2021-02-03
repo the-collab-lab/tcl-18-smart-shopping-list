@@ -14,6 +14,7 @@ function ListView() {
   const query = getProducts();
   const [values, loading, error] = useCollection(query);
   const handleInput = (e) => setNameFilter(e.target.value);
+  const resetFilter = () => setNameFilter('');
 
   useEffect(() => {
     const collectionProducts = values ? values.docs : [];
@@ -32,7 +33,7 @@ function ListView() {
     <div>
       <h2>Smart Shopping List</h2>
       <br />
-      <form>
+      <form onReset={resetFilter}>
         <label htmlFor="nameFilter">Filter items</label>
         <br />
         <input
@@ -42,6 +43,7 @@ function ListView() {
           value={nameFilter}
           onChange={handleInput}
         />
+        <input type="reset" value="Clear" />
       </form>
       <br />
       {error && <p aria-live="assertive">Error: {JSON.stringify(error)}</p>}
