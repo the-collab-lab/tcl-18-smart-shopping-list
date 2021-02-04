@@ -22,13 +22,9 @@ export const isWithin24hours = (lastPurchasedDate) => {
   return isOutdated;
 };
 
-export const latestInterval = (
-  lastDateToMillis,
-  numberOfPurchases,
-  nextPurchase,
-) => {
+export const latestInterval = (lastDateToMillis, numberOfPurchases) => {
   const currentDate = +new Date();
   const oneDay = 60 * 60 * 24 * 1000;
   const dayInterval = Math.floor((currentDate - lastDateToMillis) / oneDay);
-  return numberOfPurchases === 0 ? nextPurchase : dayInterval;
+  return numberOfPurchases === 0 || numberOfPurchases < 2 ? null : dayInterval;
 };
