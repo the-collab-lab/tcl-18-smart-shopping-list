@@ -11,7 +11,7 @@ export const FormProduct = () => {
     nextPurchase: 0,
     lastPurchasedDate: null,
     numberOfPurchases: 0,
-    estimatedDaysNextPurchase: 0,
+    estimatedDaysNextPurchase: null,
   };
 
   const [product, setProduct] = useState(initialStateProduct);
