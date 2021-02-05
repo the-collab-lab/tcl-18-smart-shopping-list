@@ -33,20 +33,26 @@ function ItemList({
   const isDateValid = (date) => {
     if (date) return true;
   };
+  const MarkProductPurchased = (
+    id,
+    lastPurchasedDateMillis,
+    nextPurchaseEstimatedByUser,
+    actualNumberOfPurchases,
+    lastEstimateNextPurchase,
+  ) => {
+    const daysLatestInterval = latestInterval(
+      lastPurchasedDateMillis,
+      actualNumberOfPurchases,
+      nextPurchaseEstimatedByUser,
+    );
 
-  const dayLatestInterval = latestInterval(
-    formattedDate,
-    numberOfPurchases,
-    nextPurchase,
-  );
+    const estimatedNextPurchase = calculateEstimate(
+      lastEstimateNextPurchase,
+      daysLatestInterval,
+      actualNumberOfPurchases,
+    );
 
-  const estimatedNextPurchase = calculateEstimate(
-    estimatedDaysNextPurchase,
-    dayLatestInterval,
-    numberOfPurchases,
-  );
-  const MarkProductPurchased = (id) => {
-    updateItemDate(token, id, numberOfPurchases, estimatedNextPurchase)
+    updateItemDate(token, id, actualNumberOfPurchases, estimatedNextPurchase)
       .then(() => {
         console.log('product updated');
       })
@@ -59,7 +65,13 @@ function ItemList({
     setIsChecked(!isChecked);
 
     if (event.target.checked) {
-      MarkProductPurchased(docId);
+      MarkProductPurchased(
+        docId,
+        formattedDate,
+        nextPurchase,
+        numberOfPurchases + 1,
+        estimatedDaysNextPurchase,
+      );
       setIsDisabled(true);
     }
   };

@@ -27,12 +27,9 @@ export const updateItemDate = (
   numberOfPurchases,
   estimatedDaysNextPurchase,
 ) => {
-  return db
-    .collection(token)
-    .doc(id)
-    .update({
-      lastPurchasedDate: new Date(),
-      numberOfPurchases: numberOfPurchases + 1,
-      estimatedDaysNextPurchase: estimatedDaysNextPurchase,
-    });
+  return db.collection(token).doc(id).update({
+    lastPurchasedDate: new Date(),
+    numberOfPurchases: numberOfPurchases,
+    estimatedDaysNextPurchase: estimatedDaysNextPurchase,
+  });
 };
