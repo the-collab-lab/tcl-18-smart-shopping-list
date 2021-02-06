@@ -22,6 +22,6 @@ export const isWithin24hours = (lastPurchasedDate) => {
   return isOutdated;
 };
 
-export const isThereCoincidence = (fullText = '', textToFind = '') => {
+export const isSubstring = (fullText = '', textToFind = '') => {
   return fullText.toLowerCase().includes(textToFind.toLowerCase());
 };

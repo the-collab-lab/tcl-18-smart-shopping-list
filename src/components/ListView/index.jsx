@@ -4,7 +4,7 @@ import {
   getProducts,
   convertCollectionToArray,
 } from 'components/Utils/firestore';
-import { isThereCoincidence } from 'components/Utils/helpers';
+import { isSubstring } from 'components/Utils/helpers';
 import ProductList from 'components/ProductList';
 import EmptyList from 'components/EmptyList';
 
@@ -18,16 +18,17 @@ function ListView() {
   useEffect(() => {
     const collectionProducts = values ? values.docs : [];
     const arrayProducts = convertCollectionToArray(collectionProducts);
-    setProductsFiltered(arrayProducts);
     if (!loading && nameFilter.length > 0) {
       setProductsFiltered(
         arrayProducts.filter((product) =>
-          isThereCoincidence(product.item, nameFilter),
+          isSubstring(product.item, nameFilter),
         ),
       );
+    } else {
+      setProductsFiltered(arrayProducts);
     }
   }, [nameFilter, values, loading]);
-  
+
   const currentProducts = values ? values.docs : [];
 
   return (
@@ -35,17 +36,19 @@ function ListView() {
       <h2>Smart Shopping List</h2>
       <br />
       <form>
-        {!!currentProducts.length && 
-        <>
-        <label htmlFor="nameFilter">Filter items</label>
-        <br /> 
-        <input
-          type="search"
-          id="nameFilter"
-          placeholder="Start typing here..."
-          value={nameFilter}
-          onChange={handleInput}
-        /></>}
+        {!!currentProducts.length && (
+          <>
+            <label htmlFor="nameFilter">Filter items</label>
+            <br />
+            <input
+              type="search"
+              id="nameFilter"
+              placeholder="Start typing here..."
+              value={nameFilter}
+              onChange={handleInput}
+            />
+          </>
+        )}
       </form>
       <br />
       {error && <p aria-live="assertive">Error: {JSON.stringify(error)}</p>}

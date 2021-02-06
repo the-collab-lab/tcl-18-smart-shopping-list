@@ -6,12 +6,12 @@ function ProductList({ products }) {
     <>
       {products && (
         <div>
-          {(products || []).map((doc) => (
-            <div key={doc.id}>
+          {(products || []).map((product) => (
+            <div key={product.id}>
               <ItemList
-                itemName={doc.item}
-                docId={doc.id}
-                lastPurchasedDate={doc.lastPurchasedDate || ''}
+                itemName={product.item}
+                docId={product.id}
+                lastPurchasedDate={product.lastPurchasedDate || ''}
               />
             </div>
           ))}
