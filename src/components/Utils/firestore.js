@@ -23,3 +23,10 @@ export const existCollectionByToken = async (userToken) => {
 export const updateItemDate = (token, id) => {
   return db.collection(token).doc(id).update({ lastPurchasedDate: new Date() });
 };
+
+export const convertCollectionToArray = (collection = []) => {
+  return collection.map((document) => {
+    const id = document.id;
+    return { id, ...document.data() };
+  });
+};

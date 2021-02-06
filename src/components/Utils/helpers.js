@@ -21,3 +21,7 @@ export const isWithin24hours = (lastPurchasedDate) => {
   const isOutdated = currentDate - lastPurchasedDate > oneDay;
   return isOutdated;
 };
+
+export const isSubstring = (fullText = '', textToFind = '') => {
+  return fullText.toLowerCase().includes(textToFind.toLowerCase());
+};
