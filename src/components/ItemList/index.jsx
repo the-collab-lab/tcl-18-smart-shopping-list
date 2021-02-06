@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { updateItemDate } from '../Utils/firestore';
 import { isWithin24hours, latestInterval } from 'components/Utils/helpers';
-const { default: calculateEstimate } = require('lib/estimates');
+import calculateEstimate from 'lib/estimates';
 function ItemList({
   itemName,
   docId,
@@ -33,7 +33,7 @@ function ItemList({
   const isDateValid = (date) => {
     if (date) return true;
   };
-  const MarkProductPurchased = (
+  const markProductPurchased = (
     id,
     lastPurchasedDateMillis,
     nextPurchaseEstimatedByUser,
@@ -65,7 +65,7 @@ function ItemList({
     setIsChecked(!isChecked);
 
     if (event.target.checked) {
-      MarkProductPurchased(
+      markProductPurchased(
         docId,
         formattedDate,
         nextPurchase,
