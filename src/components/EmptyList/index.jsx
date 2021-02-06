@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function EmptyList() {
   return (
     <section>
-      <p aria-live="polite">Your shopping list is currently empty.</p>
+      <p>Your shopping list is currently empty.</p>
       <Link to="/add-item">Add Item</Link>
     </section>
   );
