@@ -33,3 +33,7 @@ export const latestInterval = (
   const isFirstPurchase = numberOfPurchases === 1;
   return isFirstPurchase ? nextPurchaseEstimatedByUser : dayInterval;
 };
+
+export const isSubstring = (fullText = '', textToFind = '') => {
+  return fullText.toLowerCase().includes(textToFind.toLowerCase());
+};

@@ -33,3 +33,10 @@ export const updateItemDate = (
     estimatedDaysNextPurchase: estimatedDaysNextPurchase,
   });
 };
+
+export const convertCollectionToArray = (collection = []) => {
+  return collection.map((document) => {
+    const id = document.id;
+    return { id, ...document.data() };
+  });
+};

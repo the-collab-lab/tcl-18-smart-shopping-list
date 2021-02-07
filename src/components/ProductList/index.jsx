@@ -6,15 +6,15 @@ function ProductList({ products }) {
     <>
       {products && (
         <div>
-          {(products.docs || []).map((doc) => (
-            <div key={doc.id}>
+          {(products || []).map((product) => (
+            <div key={product.id}>
               <ItemList
-                itemName={doc.data().item}
-                docId={doc.id}
-                nextPurchase={doc.data().nextPurchase}
-                lastPurchasedDate={doc.data().lastPurchasedDate || ''}
-                numberOfPurchases={doc.data().numberOfPurchases}
-                estimatedDaysNextPurchase={doc.data().estimatedDaysNextPurchase}
+                itemName={product.item}
+                docId={product.id}
+                nextPurchase={product.nextPurchase}
+                lastPurchasedDate={product.lastPurchasedDate || ''}
+                numberOfPurchases={product.numberOfPurchases}
+                estimatedDaysNextPurchase={product.estimatedDaysNextPurchase}
               />
             </div>
           ))}
