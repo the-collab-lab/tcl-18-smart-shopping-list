@@ -11,7 +11,10 @@ function ProductList({ products }) {
               <ItemList
                 itemName={product.item}
                 docId={product.id}
+                nextPurchase={product.nextPurchase}
                 lastPurchasedDate={product.lastPurchasedDate || ''}
+                numberOfPurchases={product.numberOfPurchases}
+                estimatedDaysNextPurchase={product.estimatedDaysNextPurchase}
               />
             </div>
           ))}

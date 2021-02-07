@@ -10,6 +10,8 @@ export const FormProduct = () => {
     item: '',
     nextPurchase: 0,
     lastPurchasedDate: null,
+    numberOfPurchases: 0,
+    estimatedDaysNextPurchase: null,
   };
 
   const [product, setProduct] = useState(initialStateProduct);
@@ -26,7 +28,7 @@ export const FormProduct = () => {
       ) : (
         <span aria-live="polite">All fields are required</span>
       ),
-    ); 
+    );
   };
   const handleSubmitProduct = (e) => {
     e.preventDefault();

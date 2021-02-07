@@ -1,4 +1,5 @@
 import { db } from 'lib/firebase';
+
 //Create a product in the dataBase
 export const addProduct = (objectProduct) => {
   const token = localStorage.getItem('tcl18-token');
@@ -20,8 +21,17 @@ export const existCollectionByToken = async (userToken) => {
   }
 };
 
-export const updateItemDate = (token, id) => {
-  return db.collection(token).doc(id).update({ lastPurchasedDate: new Date() });
+export const updateItemDate = (
+  token,
+  id,
+  numberOfPurchases,
+  estimatedDaysNextPurchase,
+) => {
+  return db.collection(token).doc(id).update({
+    lastPurchasedDate: new Date(),
+    numberOfPurchases: numberOfPurchases,
+    estimatedDaysNextPurchase: estimatedDaysNextPurchase,
+  });
 };
 
 export const convertCollectionToArray = (collection = []) => {
