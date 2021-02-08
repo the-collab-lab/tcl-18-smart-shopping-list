@@ -1,4 +1,6 @@
 import { db } from 'lib/firebase';
+import calculateEstimate from 'lib/estimates';
+import { latestInterval } from 'components/Utils/helpers';
 
 //Create a product in the dataBase
 export const addProduct = (objectProduct) => {
@@ -39,4 +41,34 @@ export const convertCollectionToArray = (collection = []) => {
     const id = document.id;
     return { id, ...document.data() };
   });
+};
+
+export const markProductPurchased = (
+  id,
+  lastPurchasedDateMillis,
+  nextPurchaseEstimatedByUser,
+  actualNumberOfPurchases,
+  lastEstimateNextPurchase,
+) => {
+  const daysLatestInterval = latestInterval(
+    lastPurchasedDateMillis,
+    actualNumberOfPurchases,
+    nextPurchaseEstimatedByUser,
+  );
+
+  const estimatedNextPurchase = calculateEstimate(
+    lastEstimateNextPurchase,
+    daysLatestInterval,
+    actualNumberOfPurchases,
+  );
+
+  const token = localStorage.getItem('tcl18-token');
+
+  updateItemDate(token, id, actualNumberOfPurchases, estimatedNextPurchase)
+    .then(() => {
+      console.log('product updated');
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };

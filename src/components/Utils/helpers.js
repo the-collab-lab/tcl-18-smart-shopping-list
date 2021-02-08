@@ -37,3 +37,7 @@ export const latestInterval = (
 export const isSubstring = (fullText = '', textToFind = '') => {
   return fullText.toLowerCase().includes(textToFind.toLowerCase());
 };
+
+export const isDateValid = (date) => {
+  if (date) return true;
+};
