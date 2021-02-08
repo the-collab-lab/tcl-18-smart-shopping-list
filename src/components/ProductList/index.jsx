@@ -1,5 +1,6 @@
 import React from 'react';
 import ItemList from 'components/ItemList';
+import {getProductStatus} from 'components/Utils/helpers';
 
 function ProductList({ products }) {
   return (
@@ -9,6 +10,7 @@ function ProductList({ products }) {
           {(products || []).map((product) => (
             <div key={product.id}>
               <ItemList
+                status={getProductStatus(product)}
                 itemName={product.item}
                 docId={product.id}
                 nextPurchase={product.nextPurchase}
