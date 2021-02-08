@@ -37,3 +37,32 @@ export const latestInterval = (
 export const isSubstring = (fullText = '', textToFind = '') => {
   return fullText.toLowerCase().includes(textToFind.toLowerCase());
 };
+
+export function differenceInDays(dateone,datetwo) {
+  const difference = dateone.getTime() - datetwo.getTime() 
+  const days = Math.ceil(difference / (1000*3600*24))
+  return days
+}
+
+//estimatedDaysNextPurchase, nextPurchase, numberOfPurchases
+export function getProductStatus(product) {
+  let status = ""
+  if (!product.lastPurchasedDate) {
+    return status
+  }
+  const currentDate = new Date();
+  const elapsedDays = differenceInDays(product.lastPurchasedDate.toDate(), currentDate)
+  if (elapsedDays >= 0 && elapsedDays < 7) {
+    status = "soon"
+  } else if (elapsedDays >= 7 && elapsedDays <= 30) {
+    status = "kind-soon"
+  } else if (elapsedDays > 30) {
+    status = "not-soon"
+  } else if (
+      product.numberOfPurchases === 1 ||
+      (product.numberOfPurchases > 1 && Math.abs(elapsedDays) > 2*product.nextPurchase)
+    ) {
+    status = "inactive"
+  } 
+  return status;
+}
