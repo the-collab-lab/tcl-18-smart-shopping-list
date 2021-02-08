@@ -44,6 +44,7 @@ export const convertCollectionToArray = (collection = []) => {
 };
 
 export const markProductPurchased = (
+  token,
   id,
   lastPurchasedDateMillis,
   nextPurchaseEstimatedByUser,
@@ -62,11 +63,22 @@ export const markProductPurchased = (
     actualNumberOfPurchases,
   );
 
-  const token = localStorage.getItem('tcl18-token');
-
   updateItemDate(token, id, actualNumberOfPurchases, estimatedNextPurchase)
     .then(() => {
       console.log('product updated');
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+export const deleteItem = (token, id) => {
+  return db
+    .collection(token)
+    .doc(id)
+    .delete()
+    .then(() => {
+      console.log('product deleted');
     })
     .catch((error) => {
       console.error(error);
