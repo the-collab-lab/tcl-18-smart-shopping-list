@@ -73,14 +73,5 @@ export const markProductPurchased = (
 };
 
 export const deleteItem = (token, id) => {
-  return db
-    .collection(token)
-    .doc(id)
-    .delete()
-    .then(() => {
-      console.log('product deleted');
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  return db.collection(token).doc(id).delete();
 };
