@@ -3,7 +3,7 @@ import React from 'react';
 function Prompt({ isShowed, children, deleteAction, toggleModal }) {
   return (
     isShowed && (
-      <div className="prompt">
+      <div className="prompt" aria-modal="true" role="dialog" id="dialog1">
         <br />
         {children}
         <div className="buttons">

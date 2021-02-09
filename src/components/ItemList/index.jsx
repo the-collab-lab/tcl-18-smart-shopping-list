@@ -62,7 +62,9 @@ function ItemList({
 
         {itemName}
       </label>
-      <button onClick={() => setDisplayPrompt(true)}>Delete</button>
+      <button aria-labelledby="dialog1" onClick={() => setDisplayPrompt(true)}>
+        Delete
+      </button>
       <br />
       <Prompt
         isShowed={displayPrompt}
