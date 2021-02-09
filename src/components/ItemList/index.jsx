@@ -70,11 +70,12 @@ function ItemList({
         deleteAction={() => deleteItem(token, docId)}
       >
         <p>
-          {' '}
-          Are you sure you want to delete this item:{' '}
-          <b>
-            <i>{itemName}</i>
-          </b>
+          Are you sure you want to delete this item:
+          <i>
+            <b>
+              <u>{itemName}</u>
+            </b>
+          </i>
           ?
         </p>
       </Prompt>
