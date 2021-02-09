@@ -74,7 +74,7 @@ function ItemList({
         <p>
           Are you sure you want to delete this item:
           <i>
-            <b>{itemName}</b>
+            <b>{` ${itemName}`}</b>
           </i>
           ?
         </p>
