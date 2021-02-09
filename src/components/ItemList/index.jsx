@@ -69,11 +69,14 @@ function ItemList({
         toggleModal={setDisplayPrompt}
         deleteAction={() => deleteItem(token, docId)}
       >
-        Are you sure you want to delete this item:{' '}
-        <b>
-          <i>{itemName}</i>
-        </b>
-        ?
+        <p>
+          {' '}
+          Are you sure you want to delete this item:{' '}
+          <b>
+            <i>{itemName}</i>
+          </b>
+          ?
+        </p>
       </Prompt>
     </div>
   );
