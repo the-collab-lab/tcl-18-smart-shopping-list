@@ -40,3 +40,12 @@ export const convertCollectionToArray = (collection = []) => {
     return { id, ...document.data() };
   });
 };
+
+export const deleteItem = async (token, id) => {
+  return db
+    .collection(token)
+    .doc(id)
+    .delete()
+    .then(() => console.log('Successfully deleted item'))
+    .catch((error) => console.error(error));
+};

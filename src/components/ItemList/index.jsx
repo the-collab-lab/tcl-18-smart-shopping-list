@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { updateItemDate } from '../Utils/firestore';
 import { isWithin24hours, latestInterval } from 'components/Utils/helpers';
 import calculateEstimate from 'lib/estimates';
+import { deleteItem } from '../Utils/firestore';
+import Prompt from 'components/Prompt';
+
 function ItemList({
   itemName,
   docId,
@@ -14,6 +17,7 @@ function ItemList({
   const [isDisabled, setIsDisabled] = useState(false);
   const [token] = useState(() => window.localStorage.getItem('tcl18-token'));
   const [formattedDate, setFormattedDate] = useState(0);
+  const [displayPrompt, setDisplayPrompt] = useState(false);
 
   useEffect(() => {
     let date;
@@ -29,7 +33,6 @@ function ItemList({
       setIsDisabled(true);
     }
   }, [formattedDate, lastPurchasedDate]);
-
   const isDateValid = (date) => {
     if (date) return true;
   };
@@ -45,13 +48,11 @@ function ItemList({
       actualNumberOfPurchases,
       nextPurchaseEstimatedByUser,
     );
-
     const estimatedNextPurchase = calculateEstimate(
       lastEstimateNextPurchase,
       daysLatestInterval,
       actualNumberOfPurchases,
     );
-
     updateItemDate(token, id, actualNumberOfPurchases, estimatedNextPurchase)
       .then(() => {
         console.log('product updated');
@@ -60,10 +61,8 @@ function ItemList({
         console.error(error);
       });
   };
-
   const handleCheckbox = (event) => {
     setIsChecked(!isChecked);
-
     if (event.target.checked) {
       markProductPurchased(
         docId,
@@ -75,7 +74,6 @@ function ItemList({
       setIsDisabled(true);
     }
   };
-
   return (
     <>
       <label htmlFor={itemName}>
@@ -87,11 +85,18 @@ function ItemList({
           onChange={handleCheckbox}
           disabled={isDisabled}
         />
-
         {itemName}
       </label>
+
+      <Prompt
+        isShowed={displayPrompt}
+        toggleModal={setDisplayPrompt}
+        deleteAction={() => deleteItem(token, docId)}
+      >
+        {'Are you sure you want to delete this item?'}
+      </Prompt>
+      <button onClick={() => setDisplayPrompt(true)}>Delete</button>
     </>
   );
 }
-
 export default ItemList;
