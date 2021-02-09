@@ -72,9 +72,7 @@ function ItemList({
         <p>
           Are you sure you want to delete this item:
           <i>
-            <b>
-              <u>{itemName}</u>
-            </b>
+            <b>{itemName}</b>
           </i>
           ?
         </p>
