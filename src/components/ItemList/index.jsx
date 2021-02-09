@@ -15,7 +15,6 @@ function ItemList({
   const [formattedDate, setFormattedDate] = useState(0);
   const [token] = useState(() => window.localStorage.getItem('tcl18-token'));
   const [showPopup, setShowPopup] = useState(false);
-  const [answerPopup, setAnswerPopup] = useState('');
 
   useEffect(() => {
     let date;
@@ -48,27 +47,6 @@ function ItemList({
     }
   };
 
-  useEffect(() => {
-    let mounted = true;
-    if (answerPopup === 'YES') {
-      deleteItem(token, docId)
-        .then(() => {
-          console.log('Item deleted!');
-          if (mounted) {
-            setShowPopup(false);
-          }
-        })
-        .catch((error) => console.error(error));
-    } else if (answerPopup === 'NO') {
-      if (mounted) {
-        setShowPopup(false);
-      }
-    }
-    return function cleanup() {
-      mounted = false;
-    };
-  }, [answerPopup, token, docId, setShowPopup]);
-
   return (
     <div>
       <label htmlFor={itemName}>
@@ -87,10 +65,16 @@ function ItemList({
       <br />
       {showPopup && (
         <div>
-          <p>Are you sure you want to delete this item: '{itemName}'?</p>
+          <p>
+            Are you sure you want to delete this item:{' '}
+            <b>
+              <i>{itemName}</i>
+            </b>{' '}
+            ?
+          </p>
           <div>
-            <button onClick={() => setAnswerPopup('YES')}>Yes</button>
-            <button onClick={() => setAnswerPopup('NO')}>No</button>
+            <button onClick={() => deleteItem(token, docId)}>Yes</button>
+            <button onClick={() => setShowPopup(false)}>No</button>
           </div>
         </div>
       )}

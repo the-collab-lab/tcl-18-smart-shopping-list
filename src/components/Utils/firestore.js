@@ -73,5 +73,10 @@ export const markProductPurchased = (
 };
 
 export const deleteItem = (token, id) => {
-  return db.collection(token).doc(id).delete();
+  return db
+    .collection(token)
+    .doc(id)
+    .delete()
+    .then(() => console.log('Successfully deleted item'))
+    .catch((error) => console.error(error));
 };
