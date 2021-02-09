@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { isWithin24hours, isDateValid } from 'components/Utils/helpers';
 import { markProductPurchased, deleteItem } from 'components/Utils/firestore';
+import Prompt from 'components/Prompt';
 
 function ItemList({
   itemName,
@@ -14,7 +15,7 @@ function ItemList({
   const [isDisabled, setIsDisabled] = useState(false);
   const [formattedDate, setFormattedDate] = useState(0);
   const [token] = useState(() => window.localStorage.getItem('tcl18-token'));
-  const [showPopup, setShowPopup] = useState(false);
+  const [displayPrompt, setDisplayPrompt] = useState(false);
 
   useEffect(() => {
     let date;
@@ -61,23 +62,19 @@ function ItemList({
 
         {itemName}
       </label>
-      <button onClick={() => setShowPopup(true)}>Delete</button>
+      <button onClick={() => setDisplayPrompt(true)}>Delete</button>
       <br />
-      {showPopup && (
-        <div>
-          <p>
-            Are you sure you want to delete this item:{' '}
-            <b>
-              <i>{itemName}</i>
-            </b>{' '}
-            ?
-          </p>
-          <div>
-            <button onClick={() => deleteItem(token, docId)}>Yes</button>
-            <button onClick={() => setShowPopup(false)}>No</button>
-          </div>
-        </div>
-      )}
+      <Prompt
+        isShowed={displayPrompt}
+        toggleModal={setDisplayPrompt}
+        deleteAction={() => deleteItem(token, docId)}
+      >
+        Are you sure you want to delete this item:{' '}
+        <b>
+          <i>{itemName}</i>
+        </b>
+        ?
+      </Prompt>
     </div>
   );
 }
