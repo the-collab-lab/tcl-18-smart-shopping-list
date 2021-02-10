@@ -39,7 +39,7 @@ export const isSubstring = (fullText = '', textToFind = '') => {
 };
 
 export function differenceInDays(dateone,datetwo) {
-  const difference = datetwo.getTime() - dateone.getTime()
+  const difference = dateone.getTime() - datetwo.getTime() 
   const days = Math.ceil(difference / (1000*3600*24))
   return days
 }
@@ -48,31 +48,19 @@ export function differenceInDays(dateone,datetwo) {
 export function getProductStatus(product) {
   let status = ""
   if (!product.lastPurchasedDate) {
-    switch (product.nextPurchase) {
-      case 7:
-          status = "soon"
-        break;
-      case 14: 
-        status = "kind-soon"
-        break;
-      case 30:
-        status = "not-soon"
-        break;
-        default: 
-        status = ""
-    }
     return status
   }
-
-  if (product.estimatedDaysNextPurchase >= 0 && product.estimatedDaysNextPurchase < 7) {
+  const currentDate = new Date();
+  const elapsedDays = differenceInDays(product.lastPurchasedDate.toDate(), currentDate)
+  if (elapsedDays >= 0 && elapsedDays < 7) {
     status = "soon"
-  } else if (product.estimatedDaysNextPurchase >= 7 && product.estimatedDaysNextPurchase <= 30) {
+  } else if (elapsedDays >= 7 && elapsedDays <= 30) {
     status = "kind-soon"
-  } else if (product.estimatedDaysNextPurchase > 30) {
+  } else if (elapsedDays > 30) {
     status = "not-soon"
   } else if (
       product.numberOfPurchases === 1 ||
-      (product.numberOfPurchases > 1 && product.estimatedDaysNextPurchase > 2*product.nextPurchase)
+      (product.numberOfPurchases > 1 && Math.abs(elapsedDays) > 2*product.nextPurchase)
     ) {
     status = "inactive"
   } 
