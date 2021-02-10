@@ -78,12 +78,12 @@ function ItemList({
       setIsDisabled(true);
     }
   };
-
+ 
   const classes = status ? `label--${status}` : ""
 
   return (
     <>
-      <label htmlFor={itemName} className = {classes}>
+      <label htmlFor={itemName} className={classes} title="Click Me" aria-label={status}>
         <input
           type="checkbox"
           name={itemName}
