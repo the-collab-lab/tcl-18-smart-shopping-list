@@ -83,11 +83,11 @@ function ItemList({
 
   return (
     <>
-      <label htmlFor={itemName} className = {classes}>
+      <label htmlFor={itemName} className = {classes} title="Click Me" aria-label={status}>
         <input
           type="checkbox"
           name={itemName}
-          checked={isChecked}
+          aria-checked={isChecked}
           value={itemName}
           onChange={handleCheckbox}
           disabled={isDisabled}
