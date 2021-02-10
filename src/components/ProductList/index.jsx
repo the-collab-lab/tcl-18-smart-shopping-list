@@ -3,11 +3,17 @@ import ItemList from 'components/ItemList';
 import {getProductStatus} from 'components/Utils/helpers';
 
 function ProductList({ products }) {
+  const sortedProducts = products.sort ((a, b) => {
+    if(a.item.toLowerCase() < b.item.toLowerCase()) { return -1; }
+    if(a.item.toLowerCase() > b.item.toLowerCase()) { return 1; }
+    return 0;
+  })
+
   return (
     <>
       {products && (
         <div>
-          {(products || []).map((product) => (
+          {(sortedProducts || []).map((product) => (
             <div key={product.id}>
               <ItemList
                 status={getProductStatus(product)}
