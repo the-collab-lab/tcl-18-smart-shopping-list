@@ -38,31 +38,51 @@ export const isSubstring = (fullText = '', textToFind = '') => {
   return fullText.toLowerCase().includes(textToFind.toLowerCase());
 };
 
-export function differenceInDays(dateone,datetwo) {
-  const difference = dateone.getTime() - datetwo.getTime() 
-  const days = Math.ceil(difference / (1000*3600*24))
-  return days
+export function differenceInDays(dateone, datetwo) {
+  const difference = dateone.getTime() - datetwo.getTime();
+  const days = Math.ceil(difference / (1000 * 3600 * 24));
+  return days;
 }
 
-//estimatedDaysNextPurchase, nextPurchase, numberOfPurchases
+export const getDaysNextPurchase = (product) => {
+  const havePurchases = product.numberOfPurchases > 0;
+
+  const estimatedDays = havePurchases
+    ? product.estimatedDaysNextPurchase
+    : product.nextPurchase;
+  const lastPurchase = havePurchases
+    ? product.lastPurchasedDate.toDate()
+    : product.creationDate.toDate();
+
+  const dateNextPurchase = new Date(lastPurchase);
+  dateNextPurchase.setDate(lastPurchase.getDate() + estimatedDays);
+
+  const today = new Date();
+  const daysNextPurchase = differenceInDays(dateNextPurchase, today);
+
+  return daysNextPurchase;
+};
+
+export const sortProducts = (p1, p2) => {
+  let order = p1.daysNextPurchase - p2.daysNextPurchase;
+  if (order === 0) order = p1.item > p2.item ? 1 : -1;
+
+  return order;
+};
+
 export function getProductStatus(product) {
-  let status = ""
-  if (!product.lastPurchasedDate) {
-    return status
-  }
-  const currentDate = new Date();
-  const elapsedDays = differenceInDays(product.lastPurchasedDate.toDate(), currentDate)
-  if (elapsedDays >= 0 && elapsedDays < 7) {
-    status = "soon"
-  } else if (elapsedDays >= 7 && elapsedDays <= 30) {
-    status = "kind-soon"
-  } else if (elapsedDays > 30) {
-    status = "not-soon"
-  } else if (
-      product.numberOfPurchases === 1 ||
-      (product.numberOfPurchases > 1 && Math.abs(elapsedDays) > 2*product.nextPurchase)
-    ) {
-    status = "inactive"
-  } 
+  let status = '';
+  const { daysNextPurchase, estimatedDaysNextPurchase, nextPurchase } = product;
+  const havePurchases = product.numberOfPurchases > 0;
+  const estimatedDays = havePurchases
+    ? estimatedDaysNextPurchase
+    : nextPurchase;
+
+  if (daysNextPurchase > 2 * estimatedDays) status = 'inactive';
+  else if (daysNextPurchase < 7) status = 'soon';
+  else if (daysNextPurchase >= 7 && daysNextPurchase <= 30)
+    status = 'kind-soon';
+  else if (daysNextPurchase > 30) status = 'not-soon';
+
   return status;
 }
