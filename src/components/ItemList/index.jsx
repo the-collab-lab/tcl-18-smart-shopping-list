@@ -80,11 +80,13 @@ function ItemList({
   };
 
   const classes = status ? `label--${status}` : ""
-
+  const message = `You need to buy this ${status}`
+  
   return (
     <>
       <label htmlFor={itemName} className = {classes}>
         <input
+          aria-label={message}
           type="checkbox"
           name={itemName}
           checked={isChecked}
