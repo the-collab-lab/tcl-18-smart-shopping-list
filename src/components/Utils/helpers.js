@@ -38,8 +38,8 @@ export const isSubstring = (fullText = '', textToFind = '') => {
   return fullText.toLowerCase().includes(textToFind.toLowerCase());
 };
 
-export function differenceInDays(dateone, datetwo) {
-  const difference = dateone.getTime() - datetwo.getTime();
+export function differenceInDays(dateOne, dateTwo) {
+  const difference = dateOne.getTime() - dateTwo.getTime();
   const days = Math.ceil(difference / (1000 * 3600 * 24));
   return days;
 }
