@@ -77,8 +77,13 @@ export function getProductStatus(product) {
   const estimatedDays = havePurchases
     ? estimatedDaysNextPurchase
     : nextPurchase;
+  const lastPurchase = havePurchases
+    ? product.lastPurchasedDate.toDate()
+    : product.creationDate.toDate();
+  const today = new Date();
+  const lastPurchaseDays = differenceInDays(today, lastPurchase);
 
-  if (daysNextPurchase > 2 * estimatedDays) status = 'inactive';
+  if (lastPurchaseDays >= 2 * estimatedDays) status = 'inactive';
   else if (daysNextPurchase < 7) status = 'soon';
   else if (daysNextPurchase >= 7 && daysNextPurchase <= 30)
     status = 'kind-soon';
