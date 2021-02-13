@@ -8,6 +8,7 @@ export const FormProduct = () => {
 
   const initialStateProduct = {
     item: '',
+    creationDate: null,
     nextPurchase: 0,
     lastPurchasedDate: null,
     numberOfPurchases: 0,
@@ -40,6 +41,7 @@ export const FormProduct = () => {
     const editedProduct = {
       ...product,
       nextPurchase: Number(nextPurchase),
+      creationDate: new Date(),
     };
     addProduct(editedProduct);
     setProduct({ ...initialStateProduct });
@@ -69,7 +71,7 @@ export const FormProduct = () => {
             type="radio"
             required="required"
             name="nextPurchase"
-            value={7}
+            value={6}
           />
           Soon
           <br />
@@ -87,7 +89,7 @@ export const FormProduct = () => {
             type="radio"
             required="required"
             name="nextPurchase"
-            value={30}
+            value={31}
           />
           Not Soon
           <br />

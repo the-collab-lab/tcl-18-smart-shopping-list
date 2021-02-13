@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { updateItemDate } from '../Utils/firestore';
 import { isWithin24hours, latestInterval } from 'components/Utils/helpers';
 import calculateEstimate from 'lib/estimates';
+import './styles.css';
+
 function ItemList({
+  status,
   itemName,
   docId,
   nextPurchase,
@@ -76,10 +79,14 @@ function ItemList({
     }
   };
 
+  const classes = status ? `label--${status}` : ""
+  const message = `You need to buy this ${status}`
+  
   return (
     <>
-      <label htmlFor={itemName}>
+      <label htmlFor={itemName} className = {classes}>
         <input
+          aria-label={message}
           type="checkbox"
           name={itemName}
           checked={isChecked}

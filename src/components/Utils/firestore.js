@@ -1,4 +1,5 @@
 import { db } from 'lib/firebase';
+import { getDaysNextPurchase } from './helpers';
 
 //Create a product in the dataBase
 export const addProduct = (objectProduct) => {
@@ -37,6 +38,7 @@ export const updateItemDate = (
 export const convertCollectionToArray = (collection = []) => {
   return collection.map((document) => {
     const id = document.id;
-    return { id, ...document.data() };
+    const daysNextPurchase = getDaysNextPurchase(document.data());
+    return { id, ...document.data(), daysNextPurchase };
   });
 };
