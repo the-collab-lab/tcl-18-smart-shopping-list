@@ -16,7 +16,7 @@ a.selected {
   width: 100%;
   position: fixed;
   bottom: 0;
-  padding: 3rem;
+  margin: auto;
 }
 
 .navigator ul {

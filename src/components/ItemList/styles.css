@@ -1,0 +1,36 @@
+.label--soon,
+.label--kind-soon,
+.label--not-soon,
+.label--inactive {
+  position: relative;
+}
+
+.label--soon::before,
+.label--kind-soon::before,
+.label--not-soon::before,
+.label--inactive::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+}
+
+.label--soon::before {
+  background-color: green;
+}
+
+.label--kind-soon::before {
+  background-color: orange;
+}
+
+.label--not-soon::before {
+  background-color: red;
+}
+
+.label--inactive::before {
+  background-color: gray;
+}

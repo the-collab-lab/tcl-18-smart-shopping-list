@@ -7,6 +7,7 @@ import {
 import { isSubstring } from 'components/Utils/helpers';
 import ProductList from 'components/ProductList';
 import EmptyList from 'components/EmptyList';
+import '../ListView/styles.css';
 
 function ListView() {
   const [productsFiltered, setProductsFiltered] = useState([]);
@@ -32,7 +33,7 @@ function ListView() {
   const currentProducts = values ? values.docs : [];
 
   return (
-    <div>
+    <div className="list-view">
       <h2>Smart Shopping List</h2>
       <br />
       <form>

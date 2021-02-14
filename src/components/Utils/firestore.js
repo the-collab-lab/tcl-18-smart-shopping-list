@@ -1,6 +1,7 @@
 import { db } from 'lib/firebase';
 import calculateEstimate from 'lib/estimates';
 import { latestInterval } from 'components/Utils/helpers';
+import { getDaysNextPurchase } from './helpers';
 
 //Create a product in the dataBase
 export const addProduct = (objectProduct) => {
@@ -39,7 +40,8 @@ export const updateItemDate = (
 export const convertCollectionToArray = (collection = []) => {
   return collection.map((document) => {
     const id = document.id;
-    return { id, ...document.data() };
+    const daysNextPurchase = getDaysNextPurchase(document.data());
+    return { id, ...document.data(), daysNextPurchase };
   });
 };
 
@@ -73,8 +75,7 @@ export const markProductPurchased = (
 };
 
 export const deleteItem = (token, id) => {
-  return db
-    .collection(token)
+  db.collection(token)
     .doc(id)
     .delete()
     .then(() => console.log('Successfully deleted item'))

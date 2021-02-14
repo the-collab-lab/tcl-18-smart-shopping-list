@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { isWithin24hours, isDateValid } from 'components/Utils/helpers';
 import { markProductPurchased, deleteItem } from 'components/Utils/firestore';
+import './styles.css';
 
 function ItemList({
+  status,
   itemName,
   docId,
   nextPurchase,
@@ -14,6 +16,8 @@ function ItemList({
   const [isDisabled, setIsDisabled] = useState(false);
   const [formattedDate, setFormattedDate] = useState(0);
   const [token] = useState(() => window.localStorage.getItem('tcl18-token'));
+  const classes = status ? `label--${status}` : '';
+  const message = `You need to buy this ${status}`;
 
   useEffect(() => {
     let date;
@@ -57,8 +61,9 @@ function ItemList({
 
   return (
     <div>
-      <label htmlFor={itemName}>
+      <label htmlFor={itemName} className={classes}>
         <input
+          aria-label={message}
           type="checkbox"
           name={itemName}
           checked={isChecked}
