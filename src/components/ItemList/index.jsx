@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { updateItemDate } from '../Utils/firestore';
-import { isWithin24hours, latestInterval } from 'components/Utils/helpers';
-import calculateEstimate from 'lib/estimates';
+import { isWithin24hours, isDateValid } from 'components/Utils/helpers';
+import { markProductPurchased, deleteItem } from 'components/Utils/firestore';
 import './styles.css';
 
 function ItemList({
@@ -15,8 +14,10 @@ function ItemList({
 }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [token] = useState(() => window.localStorage.getItem('tcl18-token'));
   const [formattedDate, setFormattedDate] = useState(0);
+  const [token] = useState(() => window.localStorage.getItem('tcl18-token'));
+  const classes = status ? `label--${status}` : '';
+  const message = `You need to buy this ${status}`;
 
   useEffect(() => {
     let date;
@@ -33,42 +34,12 @@ function ItemList({
     }
   }, [formattedDate, lastPurchasedDate]);
 
-  const isDateValid = (date) => {
-    if (date) return true;
-  };
-  const markProductPurchased = (
-    id,
-    lastPurchasedDateMillis,
-    nextPurchaseEstimatedByUser,
-    actualNumberOfPurchases,
-    lastEstimateNextPurchase,
-  ) => {
-    const daysLatestInterval = latestInterval(
-      lastPurchasedDateMillis,
-      actualNumberOfPurchases,
-      nextPurchaseEstimatedByUser,
-    );
-
-    const estimatedNextPurchase = calculateEstimate(
-      lastEstimateNextPurchase,
-      daysLatestInterval,
-      actualNumberOfPurchases,
-    );
-
-    updateItemDate(token, id, actualNumberOfPurchases, estimatedNextPurchase)
-      .then(() => {
-        console.log('product updated');
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   const handleCheckbox = (event) => {
     setIsChecked(!isChecked);
 
     if (event.target.checked) {
       markProductPurchased(
+        token,
         docId,
         formattedDate,
         nextPurchase,
@@ -79,12 +50,18 @@ function ItemList({
     }
   };
 
-  const classes = status ? `label--${status}` : ""
-  const message = `You need to buy this ${status}`
-  
+  const openDialogDeleteItem = () => {
+    const answer = window.confirm(
+      `Are you sure you want to delete this item: '${itemName}' ?`,
+    );
+    if (answer) {
+      deleteItem(token, docId);
+    }
+  };
+
   return (
-    <>
-      <label htmlFor={itemName} className = {classes}>
+    <div>
+      <label htmlFor={itemName} className={classes}>
         <input
           aria-label={message}
           type="checkbox"
@@ -97,7 +74,10 @@ function ItemList({
 
         {itemName}
       </label>
-    </>
+      <button aria-label="Button to delete item" onClick={openDialogDeleteItem}>
+        Delete
+      </button>
+    </div>
   );
 }
 
