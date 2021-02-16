@@ -41,6 +41,7 @@ function ListView() {
             <label htmlFor="nameFilter">Filter items</label>
             <br />
             <input
+              className="filter-container"
               type="search"
               id="nameFilter"
               placeholder="Start typing here..."

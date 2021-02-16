@@ -80,6 +80,7 @@ function ItemList({
     <>
       <label htmlFor={itemName}>
         <input
+          className="checkbox"
           type="checkbox"
           name={itemName}
           checked={isChecked}

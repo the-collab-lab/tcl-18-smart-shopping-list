@@ -10,7 +10,7 @@ function ButtonCreateList() {
     history.push('/list-view');
   };
 
-  return <button onClick={createNewList}>Create a new list</button>;
+  return <button onClick={createNewList}>Create shopping list</button>;
 }
 
 export default ButtonCreateList;
