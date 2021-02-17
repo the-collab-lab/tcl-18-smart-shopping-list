@@ -34,8 +34,6 @@ function ListView() {
 
   return (
     <div className="list-view">
-      <h2>Smart Shopping List</h2>
-      <br />
       <form>
         {!!currentProducts.length && (
           <>

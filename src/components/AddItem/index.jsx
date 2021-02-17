@@ -3,8 +3,7 @@ import React from 'react';
 
 function AddItem() {
   return (
-    <div>
-      <h1>Smart Shopping list</h1>
+    <div className="mt-5">
       <FormProduct />
     </div>
   );
