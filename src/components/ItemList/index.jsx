@@ -64,6 +64,7 @@ function ItemList({
       <label htmlFor={itemName} className={classes}>
         <input
           aria-label={message}
+          className="checkbox"
           type="checkbox"
           name={itemName}
           checked={isChecked}

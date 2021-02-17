@@ -11,12 +11,14 @@ function ButtonCreateList() {
   };
 
   return (
-    <div className="card text-center">
+    <div className="card text-center mt-4 mb-2">
       <div className="card-body">
-        <h5 className="card-title">Welcome to Smart Shopping List</h5>
-        <p className="card-text">Tap "Create shopping list" to get started</p>
-        <button className="btn btn-primary" onClick={createNewList}>
-          Create a new list
+        <h1 className="card-title">Welcome to your smart shopping list!</h1>
+        <h3 className="card-text">
+          Tap "Create shopping list" to get started.
+        </h3>
+        <button className="btn-primary" onClick={createNewList}>
+          Create shopping list
         </button>
       </div>
     </div>
