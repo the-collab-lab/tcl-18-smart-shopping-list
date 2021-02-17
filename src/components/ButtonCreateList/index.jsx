@@ -10,7 +10,17 @@ function ButtonCreateList() {
     history.push('/list-view');
   };
 
-  return <button onClick={createNewList}>Create a new list</button>;
+  return (
+    <div className="card text-center">
+      <div className="card-body">
+        <h5 className="card-title">Welcome to Smart Shopping List</h5>
+        <p className="card-text">Tap "Create shopping list" to get started</p>
+        <button className="btn btn-primary" onClick={createNewList}>
+          Create a new list
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default ButtonCreateList;

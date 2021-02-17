@@ -22,19 +22,25 @@ function JoinListForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={joinToListShared}>
-        <label>
-          <input
-            type="text"
-            placeholder="Enter a token"
-            value={userToken}
-            onChange={(e) => setUserToken(e.target.value)}
-            onKeyPress={() => setShowErrorMessage(false)}
-          />
-        </label>
-        <input type="submit" value="Join List" />
-      </form>
+    <div className="card text-center">
+      <div className="card-body">
+        <p className="card-text">You can also join an existing shopping.</p>
+        <form onSubmit={joinToListShared}>
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter a token"
+              value={userToken}
+              onChange={(e) => setUserToken(e.target.value)}
+              onKeyPress={() => setShowErrorMessage(false)}
+            />
+            <button className="btn btn-success" type="submit">
+              Join List
+            </button>
+          </div>
+        </form>
+      </div>
       {loading ? <p aria-live="polite">Checking token shared.</p> : ''}
       {showErrorMessage ? (
         <p aria-live="assertive">Invalid Token. Try again!.</p>

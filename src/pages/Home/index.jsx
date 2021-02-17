@@ -5,6 +5,7 @@ import JoinListForm from 'components/JoinListForm';
 const Home = () => (
   <section className="Home">
     <ButtonCreateList />
+    <br />
     <JoinListForm />
   </section>
 );
