@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div className="nav justify-content-center fixed-top bg-light">
+        <div className="main-title">
           <h1>Smart Shopping List</h1>
         </div>
         <main className="container mt-5 pt-2">
