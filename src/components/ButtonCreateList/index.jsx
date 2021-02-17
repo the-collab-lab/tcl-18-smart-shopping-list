@@ -1,7 +1,8 @@
 import React from 'react';
 import getToken from 'lib/tokens';
 import { useHistory } from 'react-router-dom';
-import 'components/ButtonCreateList/styles.css'
+import 'components/ButtonCreateList/styles.css';
+import cart from 'components/ButtonCreateList/cart.svg';
 
 function ButtonCreateList() {
   let history = useHistory();
@@ -14,7 +15,7 @@ function ButtonCreateList() {
   return (
     <div className="card text-center">
       <div className="card-body">
-        <img src="https://www.flaticon.es/svg/vstatic/svg/3643/3643914.svg?token=exp=1613591247~hmac=b499938a0a24b229bea43142879095fb" alt="shopping cart logo"/>
+        <img src={cart} alt="shopping cart logo" />
         <p className="card-text">Tap "Create shopping list" to get started</p>
         <button className="btn btn-primary" onClick={createNewList}>
           Create a new list
