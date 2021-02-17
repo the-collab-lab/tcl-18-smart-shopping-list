@@ -25,6 +25,7 @@ function JoinListForm() {
     <div>
       <form onSubmit={joinToListShared}>
         <label>
+          <h5>You can also join an existing shopping list.</h5>
           <input
             type="text"
             placeholder="Enter a token"
@@ -33,7 +34,7 @@ function JoinListForm() {
             onKeyPress={() => setShowErrorMessage(false)}
           />
         </label>
-        <input type="submit" value="Join List" />
+        <input className="join-list" type="submit" value="Join List" />
       </form>
       {loading ? <p aria-live="polite">Checking token shared.</p> : ''}
       {showErrorMessage ? (
