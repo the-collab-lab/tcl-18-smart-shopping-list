@@ -15,13 +15,6 @@ a.selected {
   font-weight: 700;
 }
 
-.navigator {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  margin: auto;
-}
-
 .navigator ul {
   list-style-type: none;
   padding: 0;
