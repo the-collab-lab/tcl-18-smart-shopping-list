@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { existCollectionByToken } from 'components/Utils/firestore';
+import 'components/JoinListForm/styles.css'
 
 function JoinListForm() {
   const history = useHistory();
