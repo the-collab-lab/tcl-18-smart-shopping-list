@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { existCollectionByToken } from 'components/Utils/firestore';
-import 'components/JoinListForm/styles.css'
+import 'components/JoinListForm/styles.css';
 
 function JoinListForm() {
   const history = useHistory();
@@ -41,13 +41,13 @@ function JoinListForm() {
             </button>
           </div>
         </form>
+        {loading ? <p aria-live="polite">Checking token shared.</p> : ''}
+        {showErrorMessage ? (
+          <p aria-live="assertive">Invalid Token. Try again!.</p>
+        ) : (
+          ''
+        )}
       </div>
-      {loading ? <p aria-live="polite">Checking token shared.</p> : ''}
-      {showErrorMessage ? (
-        <p aria-live="assertive">Invalid Token. Try again!.</p>
-      ) : (
-        ''
-      )}
     </div>
   );
 }
