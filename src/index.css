@@ -19,17 +19,11 @@ code {
 }
 
 h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 24px;
-  margin: 20px;
-  color: #ff0000;
-}
-
-h1 {
   color: #fff;
   font-size: 40px;
   font-family: 'Dancing Script', cursive;
   font-weight: bold;
+  margin: 0 auto;
 }
 
 h2 {
@@ -39,8 +33,9 @@ h2 {
 
 h3 {
   font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
+  font-size: 24px;
   margin: 20px;
+  font-weight: bold;
 }
 
 h5 {
@@ -100,11 +95,6 @@ input::placeholder {
   border: none;
   text-decoration: none;
   cursor: pointer;
-}
-
-.join-list:hover {
-  background-color: #222326;
-  color: #0cc665;
 }
 
 .checkbox {
