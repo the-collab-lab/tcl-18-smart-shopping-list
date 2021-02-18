@@ -17,6 +17,7 @@
 
 .nav-link {
   color: white;
+  border-radius: 0;
 }
 
 .nav-link.selected {
