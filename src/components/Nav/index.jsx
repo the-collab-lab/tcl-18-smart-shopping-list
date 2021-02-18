@@ -7,7 +7,7 @@ function Nav() {
   return (
     <nav className="App-Navbar-Bottom fixed-bottom">
       <ul className="nav nav-pills nav-fill">
-        <li className="nav-item border border-1 border-end border-white">
+        <li className="nav-item">
           <NavLink
             to="/list-view"
             activeClassName="selected"
@@ -19,7 +19,7 @@ function Nav() {
             </span>
           </NavLink>
         </li>
-        <li className="nav-item border">
+        <li className="nav-item">
           <NavLink
             to="/add-item"
             activeClassName="selected"

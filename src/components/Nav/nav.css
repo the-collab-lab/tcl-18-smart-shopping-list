@@ -15,9 +15,9 @@
   padding-right: 5px;
 }
 
-.nav-link {
-  color: white;
+.nav-pills .nav-link {
   border-radius: 0;
+  color: white;
 }
 
 .nav-link.selected {
