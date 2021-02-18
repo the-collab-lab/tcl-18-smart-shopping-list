@@ -7,6 +7,7 @@ import {
 import { isSubstring } from 'components/Utils/helpers';
 import ProductList from 'components/ProductList';
 import EmptyList from 'components/EmptyList';
+import Nav from 'components/Nav';
 import '../ListView/styles.css';
 
 function ListView() {
@@ -59,6 +60,7 @@ function ListView() {
       ) : (
         <ProductList products={productsFiltered} />
       )}
+      <Nav />
     </div>
   );
 }
