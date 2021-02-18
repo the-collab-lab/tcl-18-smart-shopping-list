@@ -13,7 +13,7 @@ function ButtonCreateList() {
   };
 
   return (
-    <div className="card text-center">
+    <div className="card text-center mt-4 mb-2">
       <div className="card-body">
         <img src={cart} alt="shopping cart logo" />
         <p className="card-text">Tap "Create shopping list" to get started</p>

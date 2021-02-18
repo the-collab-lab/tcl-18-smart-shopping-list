@@ -23,9 +23,9 @@ function JoinListForm() {
   };
 
   return (
-    <div className="card text-center">
+    <div className="card text-center mt-4 mb-2">
       <div className="card-body">
-        <p className="card-text">You can also join an existing shopping.</p>
+        <h3 className="card-text">You can also join an existing shopping.</h3>
         <form onSubmit={joinToListShared}>
           <div className="input-group mb-3">
             <input
@@ -36,7 +36,7 @@ function JoinListForm() {
               onChange={(e) => setUserToken(e.target.value)}
               onKeyPress={() => setShowErrorMessage(false)}
             />
-            <button className="btn btn-success" type="submit">
+            <button className="btn-success" type="submit">
               Join List
             </button>
           </div>

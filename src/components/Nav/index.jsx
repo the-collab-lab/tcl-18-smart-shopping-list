@@ -5,7 +5,7 @@ import './nav.css';
 
 function Nav() {
   return (
-    <nav className="navigator">
+    <nav className="navigator fixed-bottom p-3">
       <ul>
         <li>
           <NavLink to="/list-view" activeClassName="selected">

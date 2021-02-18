@@ -1,5 +1,8 @@
 a {
-  font-weight: normal;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+  color: #222326;
 }
 
 a:visited,
@@ -9,14 +12,7 @@ a:link {
 }
 
 a.selected {
-  font-weight: bold;
-}
-
-.navigator {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  margin: auto;
+  font-weight: 700;
 }
 
 .navigator ul {

@@ -1,4 +1,6 @@
 import { db } from 'lib/firebase';
+import calculateEstimate from 'lib/estimates';
+import { latestInterval } from 'components/Utils/helpers';
 import { getDaysNextPurchase } from './helpers';
 
 //Create a product in the dataBase
@@ -41,4 +43,41 @@ export const convertCollectionToArray = (collection = []) => {
     const daysNextPurchase = getDaysNextPurchase(document.data());
     return { id, ...document.data(), daysNextPurchase };
   });
+};
+
+export const markProductPurchased = (
+  token,
+  id,
+  lastPurchasedDateMillis,
+  nextPurchaseEstimatedByUser,
+  actualNumberOfPurchases,
+  lastEstimateNextPurchase,
+) => {
+  const daysLatestInterval = latestInterval(
+    lastPurchasedDateMillis,
+    actualNumberOfPurchases,
+    nextPurchaseEstimatedByUser,
+  );
+
+  const estimatedNextPurchase = calculateEstimate(
+    lastEstimateNextPurchase,
+    daysLatestInterval,
+    actualNumberOfPurchases,
+  );
+
+  updateItemDate(token, id, actualNumberOfPurchases, estimatedNextPurchase)
+    .then(() => {
+      console.log('product updated');
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+export const deleteItem = (token, id) => {
+  db.collection(token)
+    .doc(id)
+    .delete()
+    .then(() => console.log('Successfully deleted item'))
+    .catch((error) => console.error(error));
 };

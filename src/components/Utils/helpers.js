@@ -38,6 +38,9 @@ export const isSubstring = (fullText = '', textToFind = '') => {
   return fullText.toLowerCase().includes(textToFind.toLowerCase());
 };
 
+export const isDateValid = (date) => {
+  if (date) return true;
+};
 export function differenceInDays(dateOne, dateTwo) {
   const difference = dateOne.getTime() - dateTwo.getTime();
   const days = Math.ceil(difference / (1000 * 3600 * 24));
