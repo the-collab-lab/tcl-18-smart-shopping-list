@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import ListView from 'components/ListView';
-import AddItem from 'components/AddItem';
+import ListView from 'pages/ListView';
+import AddItem from 'pages/AddItem';
 import Home from 'pages/Home';
 import PublicRoute from 'routes/PublicRoute';
 import PrivateRoute from 'routes/PrivateRoute';
