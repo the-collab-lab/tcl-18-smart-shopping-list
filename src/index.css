@@ -6,6 +6,18 @@
   box-sizing: border-box;
 }
 
+a {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+}
+
+a:visited,
+a:active,
+a:link {
+  font-weight: normal;
+}
+
 body {
   background-image: #fff;
   margin: 0;
