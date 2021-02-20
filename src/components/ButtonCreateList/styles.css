@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Open+Sans&family=Satisfy&family=Yellowtail&display=swap');
+
+.btn-primary {
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 5px 15px;
+  border: none;
+  margin: 0 5px;
+  font-size: 14px;
+  font-family: 'Poppins-SemiBold', Helvetica, Arial, sans-serif;
+  background-image: linear-gradient(130deg, #ff9259 0%, #ff2426 70%);
+}
+
+img {
+  width: 60px;
+  height: 60px;
+  margin: 15px;
+}

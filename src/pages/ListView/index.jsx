@@ -7,6 +7,7 @@ import {
 import { isSubstring } from 'components/Utils/helpers';
 import ProductList from 'components/ProductList';
 import EmptyList from 'components/EmptyList';
+import Nav from 'components/Nav';
 import '../ListView/styles.css';
 
 function ListView() {
@@ -34,14 +35,13 @@ function ListView() {
 
   return (
     <div className="list-view">
-      <h2>Smart Shopping List</h2>
-      <br />
       <form>
         {!!currentProducts.length && (
           <>
             <label htmlFor="nameFilter">Filter items</label>
             <br />
             <input
+              className="filter-container"
               type="search"
               id="nameFilter"
               placeholder="Start typing here..."
@@ -60,6 +60,7 @@ function ListView() {
       ) : (
         <ProductList products={productsFiltered} />
       )}
+      <Nav />
     </div>
   );
 }

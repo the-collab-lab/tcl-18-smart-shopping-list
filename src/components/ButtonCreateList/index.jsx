@@ -1,6 +1,8 @@
 import React from 'react';
 import getToken from 'lib/tokens';
 import { useHistory } from 'react-router-dom';
+import 'components/ButtonCreateList/styles.css';
+import cart from 'components/ButtonCreateList/cart.svg';
 
 function ButtonCreateList() {
   let history = useHistory();
@@ -10,7 +12,17 @@ function ButtonCreateList() {
     history.push('/list-view');
   };
 
-  return <button onClick={createNewList}>Create a new list</button>;
+  return (
+    <div className="card text-center mt-4 mb-2">
+      <div className="card-body">
+        <img src={cart} alt="shopping cart logo" />
+        <p className="card-text">Click "Create a new list" to get started</p>
+        <button className="btn btn-primary" onClick={createNewList}>
+          Create a new list
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default ButtonCreateList;

@@ -1,23 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@600&family=Source+Sans+Pro&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+a {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+}
+
+a:visited,
+a:active,
+a:link {
+  font-weight: normal;
+}
+
 body {
+  background-image: #fff;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Montserrat', sans-serif;
+  color: #222326;
+  font-weight: normal;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  color: #fff;
+  font-size: 40px;
+  font-family: 'Dancing Script', cursive;
+  font-weight: bold;
+  margin: 0 auto;
 }
 
 h2 {
-  margin-top: 2rem;
+  font-size: 30px;
+  margin: 20px;
+}
+
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  margin: 20px;
+  font-weight: bold;
+}
+
+h5 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  margin: 20px;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #222326;
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  margin-right: 5px;
+}
+
+button {
+  background-color: #0cc665;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #222326;
+  color: #0cc665;
+}
+
+input {
+  padding: 5px 10px;
+}
+
+input::placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.join-list {
+  background-color: #0cc665;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 6px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.filter-container {
+  width: 20%;
+}
+
+.main-title {
+  height: 55px;
+  justify-content: center;
+  background-image: linear-gradient(130deg, #ff9259 0%, #ff2426 70%);
+  box-shadow: 5px 5px 9px #b8b8b8, -5px -5px 9px #ffffff;
 }

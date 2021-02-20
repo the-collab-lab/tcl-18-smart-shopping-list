@@ -1,11 +1,12 @@
 import { FormProduct } from 'components/FormProduct';
 import React from 'react';
+import Nav from 'components/Nav';
 
 function AddItem() {
   return (
-    <div>
-      <h1>Smart Shopping list</h1>
+    <div className="mt-5">
       <FormProduct />
+      <Nav />
     </div>
   );
 }

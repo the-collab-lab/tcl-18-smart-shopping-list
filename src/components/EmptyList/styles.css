@@ -1,0 +1,15 @@
+.link-add {
+  font-size: 15px;
+  text-decoration: underline;
+  color: #222326;
+}
+
+.link-add:hover {
+  color: #ff2426;
+}
+
+.bag {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 5px;
+}

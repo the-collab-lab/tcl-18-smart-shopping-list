@@ -1,36 +1,30 @@
-a {
-  font-weight: normal;
+.nav-item {
+  border-radius: 0;
 }
 
-a:visited,
-a:active,
-a:link {
-  font-weight: normal;
-}
-
-a.selected {
-  font-weight: bold;
-}
-
-.navigator {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  margin: auto;
-}
-
-.navigator ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.navigator ul li {
-  display: flex;
+.nav-item-content {
   align-items: center;
-  width: 50%;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
+}
+
+.nav-icon {
+  font-size: 1.6em;
+  margin-top: -9px;
+  padding-right: 5px;
+}
+
+.nav-pills .nav-link {
+  border-radius: 0;
+  color: white;
+}
+
+.nav-link.selected {
+  background-color: black;
+  font-weight: 700;
+}
+
+.nav-link:hover {
+  color: white;
 }
