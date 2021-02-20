@@ -16,7 +16,7 @@ function ButtonCreateList() {
     <div className="card text-center mt-4 mb-2">
       <div className="card-body">
         <img src={cart} alt="shopping cart logo" />
-        <p className="card-text">Tap "Create shopping list" to get started</p>
+        <p className="card-text">Click "Create a new list" to get started</p>
         <button className="btn btn-primary" onClick={createNewList}>
           Create a new list
         </button>
