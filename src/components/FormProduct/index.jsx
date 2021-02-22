@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { addProduct, getProducts } from 'components/Utils/firestore.js';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { isProductDuplicated } from 'components/Utils/helpers';
+import './styles.css';
 export const FormProduct = () => {
   const query = getProducts();
   const [products] = useCollection(query);
@@ -48,54 +49,75 @@ export const FormProduct = () => {
   };
 
   return (
-    <div>
+    <div className="container d-flex justify-content-center container-form">
       {error && <p>{error}</p>}
-      <form onSubmit={handleSubmitProduct}>
-        <div>
-          <label>Item name: </label>
+      <form onSubmit={handleSubmitProduct} className="form-group col-4">
+        <div className="form-group">
+          <label className="form-text" for="Item-Name">
+            Item name:
+          </label>
           <input
+            className="form-control"
+            id="Item-Name"
             onChange={handleInputProduct}
             type="text"
-            placeholder="Add A Product"
+            placeholder="Add a Product"
             autoComplete="off"
             required="required"
             name="item"
             value={product.item}
           />
         </div>
-        <div>
-          <label>How soon will you buy this again?</label>
-          <br />
-          <input
-            onChange={handleInputProduct}
-            type="radio"
-            required="required"
-            name="nextPurchase"
-            value={6}
-          />
-          Soon
-          <br />
-          <input
-            onChange={handleInputProduct}
-            type="radio"
-            required="required"
-            name="nextPurchase"
-            value={14}
-          />
-          Kind Of Soon
-          <br />
-          <input
-            onChange={handleInputProduct}
-            type="radio"
-            required="required"
-            name="nextPurchase"
-            value={31}
-          />
-          Not Soon
-          <br />
+        <div className="mt-3 mb-3">
+          <p className="form-text">How soon will you buy this again?</p>
+
+          <div className="d-flex justify-content-around">
+            <input
+              className="btn-check btn-check-soon"
+              onChange={handleInputProduct}
+              type="radio"
+              required="required"
+              name="nextPurchase"
+              value={6}
+            />
+            <label className="btn btn-soon" for="option1">
+              Soon
+              <br />
+              (1-6 days)
+            </label>
+
+            <input
+              className="btn-check btn-check-kind"
+              onChange={handleInputProduct}
+              type="radio"
+              required="required"
+              name="nextPurchase"
+              value={14}
+            />
+            <label className="btn btn-kind" for="option1">
+              Kind Of Soon
+              <br />
+              (7-14 days)
+            </label>
+            <input
+              className="btn-check btn-check-not-soon"
+              onChange={handleInputProduct}
+              type="radio"
+              required="required"
+              name="nextPurchase"
+              value={31}
+            />
+            <label className="btn btn-not-soon" for="option1">
+              Not Soon
+              <br />
+              (15-31 days)
+            </label>
+          </div>
         </div>
 
-        <button type="submit">Add Item</button>
+        <button className="btn w-100 btn-addItem" type="submit">
+          <i className="bi bi-cart-plus-fill form-icon"></i>
+        </button>
       </form>
     </div>
   );

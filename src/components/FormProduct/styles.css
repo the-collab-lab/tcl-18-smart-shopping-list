@@ -1,0 +1,63 @@
+.container-form {
+  border-radius: 7px;
+  background: #ececec;
+  box-shadow: 5px 5px 9px #b8b8b8, -5px -5px 9px #ffffff;
+  padding: 15px 0px;
+}
+
+.form-icon {
+  font-size: 40px;
+}
+
+.form-text {
+  font-size: 24px;
+  color: black;
+}
+
+/* Verdes
+#00af91
+#16c79a
+#00917c
+#70af85 */
+.btn-soon {
+  background: #fafafa;
+  box-shadow: 3px 3px 3px #00af91, 5px 5px 3px #ffffff;
+}
+
+.btn-soon:hover,
+.btn-check-soon:visited {
+  background: #00af91;
+  color: white;
+}
+
+.btn-kind {
+  background: #fafafa;
+  box-shadow: 3px 3px 3px #ff4301, 5px 5px 3px #ffffff;
+}
+
+.btn-kind:hover,
+.btn-kind:visited {
+  background: #ff4301;
+  color: white;
+}
+
+.btn-not-soon {
+  background: #fafafa;
+  box-shadow: 3px 3px 3px #cd0a0a, 5px 5px 3px #ffffff;
+}
+
+.btn-not-soon:hover,
+.btn-check-not-soon:visited {
+  background: #cd0a0a;
+  color: white;
+}
+
+.btn-addItem {
+  background: #fafafa;
+  box-shadow: 3px 3px 3px #cd0a0a, 5px 5px 3px #ffffff;
+}
+
+.btn-addItem:hover {
+  background: #cd0a0a;
+  color: white;
+}
