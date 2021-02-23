@@ -53,7 +53,7 @@ export const FormProduct = () => {
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmitProduct} className="form-group col-4">
         <div className="form-group">
-          <label className="form-text" for="Item-Name">
+          <label className="form-text" htmlFor="Item-Name">
             Item name:
           </label>
           <input
@@ -80,7 +80,7 @@ export const FormProduct = () => {
               name="nextPurchase"
               value={6}
             />
-            <label className="btn btn-soon" for="option1">
+            <label className="btn btn-soon" htmlFor="option1">
               Soon
               <br />
               (1-6 days)
@@ -94,7 +94,7 @@ export const FormProduct = () => {
               name="nextPurchase"
               value={14}
             />
-            <label className="btn btn-kind" for="option1">
+            <label className="btn btn-kind" htmlFor="option1">
               Kind Of Soon
               <br />
               (7-14 days)
@@ -107,7 +107,7 @@ export const FormProduct = () => {
               name="nextPurchase"
               value={31}
             />
-            <label className="btn btn-not-soon" for="option1">
+            <label className="btn btn-not-soon" htmlFor="option1">
               Not Soon
               <br />
               (15-31 days)

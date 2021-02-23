@@ -4,7 +4,7 @@ import Nav from 'components/Nav';
 
 function AddItem() {
   return (
-    <div className="mt-5">
+    <div className="mt-1">
       <FormProduct />
       <Nav />
     </div>

@@ -14,18 +14,13 @@
   color: black;
 }
 
-/* Verdes
-#00af91
-#16c79a
-#00917c
-#70af85 */
 .btn-soon {
   background: #fafafa;
   box-shadow: 3px 3px 3px #00af91, 5px 5px 3px #ffffff;
 }
 
 .btn-soon:hover,
-.btn-check-soon:visited {
+.btn-check-soon:focus {
   background: #00af91;
   color: white;
 }
@@ -36,7 +31,7 @@
 }
 
 .btn-kind:hover,
-.btn-kind:visited {
+.btn-check-kind:visited {
   background: #ff4301;
   color: white;
 }
@@ -53,11 +48,21 @@
 }
 
 .btn-addItem {
-  background: #fafafa;
-  box-shadow: 3px 3px 3px #cd0a0a, 5px 5px 3px #ffffff;
+  border: none;
+  color: black;
+  background-image: radial-gradient(
+    circle at -20.71% 50%,
+    #ebe273 0,
+    #eed560 16.67%,
+    #f1c64e 33.33%,
+    #f2b53c 50%,
+    #f3a42c 66.67%,
+    #f69221 83.33%,
+    #f8801d 100%
+  );
 }
 
 .btn-addItem:hover {
-  background: #cd0a0a;
+  background: black;
   color: white;
 }
