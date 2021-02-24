@@ -1,3 +1,7 @@
 .list-view {
+  width: 385px;
   margin: 20px auto;
+  background: #ececec;
+  box-shadow: 5px 5px 9px #b8b8b8, -5px -5px 9px #ffffff;
+  padding: 15px 0px;
 }

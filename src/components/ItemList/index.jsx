@@ -60,11 +60,10 @@ function ItemList({
   };
 
   return (
-    <div>
-      <label htmlFor={itemName} className={classes}>
-        <input
+    <div className="card d-flex flex-row align-items-center justify-content-between mb-2">
+      <input
           aria-label={message}
-          className="checkbox"
+          className="checkbox checkbox-main"
           type="checkbox"
           name={itemName}
           checked={isChecked}
@@ -73,13 +72,22 @@ function ItemList({
           disabled={isDisabled}
         />
 
+      <label htmlFor={itemName} className={classes}>
         {itemName}
       </label>
-      <button aria-label="Button to delete item" onClick={openDialogDeleteItem}>
-        Delete
+      <div>
+        {(status === 'soon') && <i className="fas fa-running" style={{ fontSize: 24}}></i>}
+        {(status === 'kind-soon') && <i className="fas fa-hourglass-half" style={{ fontSize: 24}}></i>}
+        {(status === 'not-soon') && <i className="fas fa-spa" style={{ fontSize: 24}}></i>}
+        {(status === 'inactive') && <i className="fas fa-bell-slash" style={{ fontSize: 24}}></i>}
+
+      <button className="bg-white" aria-label="Button to delete item" onClick={openDialogDeleteItem}>
+        <i className="bi bi-trash" style={{ fontSize: 24}}></i>
       </button>
+      </div>
     </div>
   );
+
 }
 
 export default ItemList;

@@ -19,18 +19,35 @@
   border-radius: 50%;
 }
 
-.label--soon::before {
-  background-color: green;
+.label--soon::before,
+.fa-running::before {
+  color: green;
 }
 
-.label--kind-soon::before {
-  background-color: orange;
+.label--kind-soon::before,
+.fa-hourglass-half::before {
+  color: orange;
 }
 
-.label--not-soon::before {
-  background-color: red;
+.label--not-soon::before,
+.fa-spa::before {
+  color: red;
 }
 
-.label--inactive::before {
-  background-color: gray;
+.label--inactive::before,
+.fa-bell-slash::before {
+  color: gray;
+}
+
+.checkbox-main {
+  margin: 0 15px;
+  transform: scale(2);
+}
+
+.bi-trash {
+  color: grey;
+}
+
+.bi-trash:hover {
+  color: #000;
 }

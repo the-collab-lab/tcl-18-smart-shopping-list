@@ -4,49 +4,13 @@
   box-shadow: 5px 5px 9px #b8b8b8, -5px -5px 9px #ffffff;
   padding: 15px 0px;
 }
-
 .form-icon {
   font-size: 40px;
 }
-
 .form-text {
   font-size: 24px;
   color: black;
 }
-
-.btn-soon {
-  background: #fafafa;
-  box-shadow: 3px 3px 3px #00af91, 5px 5px 3px #ffffff;
-}
-
-.btn-soon:hover,
-.btn-check-soon:focus {
-  background: #00af91;
-  color: white;
-}
-
-.btn-kind {
-  background: #fafafa;
-  box-shadow: 3px 3px 3px #ff4301, 5px 5px 3px #ffffff;
-}
-
-.btn-kind:hover,
-.btn-check-kind:visited {
-  background: #ff4301;
-  color: white;
-}
-
-.btn-not-soon {
-  background: #fafafa;
-  box-shadow: 3px 3px 3px #cd0a0a, 5px 5px 3px #ffffff;
-}
-
-.btn-not-soon:hover,
-.btn-check-not-soon:visited {
-  background: #cd0a0a;
-  color: white;
-}
-
 .btn-addItem {
   border: none;
   color: black;
@@ -61,8 +25,53 @@
     #f8801d 100%
   );
 }
-
 .btn-addItem:hover {
   background: black;
   color: white;
+}
+input[type='radio'] {
+  display: none;
+  text-align: center;
+  margin: 0;
+}
+.radio-buttons input[type='radio'] + .btn-soon {
+  background: #fafafa;
+  box-shadow: 3px 3px 3px #00af91, 5px 5px 3px #ffffff;
+}
+.radio-buttons input[type='radio'] + .btn-kind {
+  background: #fafafa;
+  box-shadow: 3px 3px 3px #ff4301, 5px 5px 3px #ffffff;
+}
+.radio-buttons input[type='radio'] + .btn-not-soon {
+  background: #fafafa;
+  box-shadow: 3px 3px 3px #cd0a0a, 5px 5px 3px #ffffff;
+}
+.radio-buttons input[type='radio'] + .btn-soon:hover {
+  background: #00af91;
+  color: white;
+}
+.radio-buttons input[type='radio'] + .btn-kind:hover {
+  background: #ff4301;
+  color: white;
+}
+.radio-buttons input[type='radio'] + .btn-not-soon:hover {
+  background: #cd0a0a;
+  color: white;
+}
+.radio-buttons input[type='radio']:checked + .btn-soon {
+  background: #00af91;
+  color: white;
+}
+.radio-buttons input[type='radio']:checked + .btn-kind {
+  background: #ff4301;
+  color: white;
+}
+.radio-buttons input[type='radio']:checked + .btn-not-soon {
+  background: #cd0a0a;
+  color: white;
+}
+.radio-buttons input[type='radio'] + label {
+  border-radius: 15px;
+  height: 70px;
+  padding: 5px;
 }

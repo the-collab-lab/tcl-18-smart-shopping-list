@@ -34,21 +34,21 @@ function ListView() {
   const currentProducts = values ? values.docs : [];
 
   return (
-    <div className="list-view">
+    <div className="list-view p-4">
       <form>
         {!!currentProducts.length && (
-          <>
+          <div className="form-group">
             <label htmlFor="nameFilter">Filter items</label>
             <br />
             <input
-              className="filter-container"
+              className="filter-container w-100"
               type="search"
               id="nameFilter"
               placeholder="Start typing here..."
               value={nameFilter}
               onChange={handleInput}
             />
-          </>
+          </div>
         )}
       </form>
       <br />
