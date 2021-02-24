@@ -15,37 +15,56 @@ export const FormProduct = () => {
     estimatedDaysNextPurchase: null,
   };
   const [product, setProduct] = useState(initialStateProduct);
-  const [error, setError] = useState('');
-  const handleInputProduct = (e) => {
-    setProduct({
-      ...product,
-      [e.target.name]: e.target.value,
-    });
-    setError(
-      e.target.value ? (
-        ''
-      ) : (
-        <span aria-live="polite">All fields are required</span>
-      ),
-    );
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
+  const handleNameInput = (e) => {
+    const clone = { ...product };
+    clone.item = e.target.value;
+    setProduct(clone);
+    setError(false);
+    setErrorMsg('');
   };
+  const handleRadioNextPurchase = (e) => {
+    const clone = { ...product };
+    clone.nextPurchase = e.target.value;
+    setProduct(clone);
+    setError(false);
+    setErrorMsg('');
+  };
+
   const handleSubmitProduct = (e) => {
     e.preventDefault();
     const { item, nextPurchase } = product;
-    if (isProductDuplicated(products, item))
-      return setError('The item is already on the list');
-    const editedProduct = {
-      ...product,
-      nextPurchase: Number(nextPurchase),
-      creationDate: new Date(),
-    };
-    addProduct(editedProduct);
-    setProduct({ ...initialStateProduct });
+
+    if (item.length > 0) {
+      if (nextPurchase > 0) {
+        if (isProductDuplicated(products, item)) {
+          setError(true);
+          setErrorMsg('The item is already on the list');
+        } else {
+          const editedProduct = {
+            ...product,
+            nextPurchase: Number(nextPurchase),
+            creationDate: new Date(),
+          };
+          addProduct(editedProduct);
+          setProduct({ ...initialStateProduct });
+          setError(false);
+          setErrorMsg('');
+        }
+      } else {
+        setError(true);
+        setErrorMsg('Next Purchase is required');
+      }
+    } else {
+      setError(true);
+      setErrorMsg('Name is required');
+    }
   };
+
   return (
     <div className="d-flex justify-content-center container-form w-100">
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSubmitProduct} className="w-100 p-2">
+      <form onSubmit={handleSubmitProduct} className="w-100 p-2" noValidate>
         <div>
           <label className="form-text" htmlFor="Item-Name">
             Item name:
@@ -53,7 +72,7 @@ export const FormProduct = () => {
           <input
             className="form-control"
             id="Item-Name"
-            onChange={handleInputProduct}
+            onChange={handleNameInput}
             type="text"
             placeholder="Add a Product"
             autoComplete="off"
@@ -66,7 +85,7 @@ export const FormProduct = () => {
           <p className="form-text">How soon will you buy this again?</p>
           <div className="radio-buttons">
             <input
-              onChange={handleInputProduct}
+              onChange={handleRadioNextPurchase}
               type="radio"
               required="required"
               name="options"
@@ -79,7 +98,7 @@ export const FormProduct = () => {
               (1-6 days)
             </label>
             <input
-              onChange={handleInputProduct}
+              onChange={handleRadioNextPurchase}
               type="radio"
               required="required"
               name="options"
@@ -92,7 +111,7 @@ export const FormProduct = () => {
               (7-14 days)
             </label>
             <input
-              onChange={handleInputProduct}
+              onChange={handleRadioNextPurchase}
               type="radio"
               required="required"
               name="options"
@@ -106,6 +125,11 @@ export const FormProduct = () => {
             </label>
           </div>
         </div>
+        {error && (
+          <p aria-live="polite" className="text-danger">
+            {errorMsg}
+          </p>
+        )}
         <button className="btn w-100 btn-addItem" type="submit">
           <i className="bi bi-cart-plus-fill form-icon"></i>
         </button>

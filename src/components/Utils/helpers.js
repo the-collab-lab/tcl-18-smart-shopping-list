@@ -1,18 +1,22 @@
-export function normalizeItem(item) {
-  return item
+export function normalizeItem(item = '') {
+  const foundMatch = item
     .trim()
     .toLowerCase()
-    .match(/[^_\W]+/g)
-    .join('');
+    .match(/[^_\W]+/g);
+
+  return foundMatch ? foundMatch.join('') : '';
 }
 
 export const isProductDuplicated = (products, item) => {
   const normalizedItemInput = normalizeItem(item);
 
-  const normalizedItemsDb = products.docs.map((doc) =>
-    normalizeItem(doc.data().item),
-  );
-  return normalizedItemsDb.includes(normalizedItemInput);
+  if (normalizedItemInput.length > 0) {
+    const normalizedItemsDb = products.docs.map((doc) =>
+      normalizeItem(doc.data().item),
+    );
+    return normalizedItemsDb.includes(normalizedItemInput);
+  }
+  return false;
 };
 
 export const isWithin24hours = (lastPurchasedDate) => {
