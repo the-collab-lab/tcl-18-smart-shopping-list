@@ -60,7 +60,7 @@ function ItemList({
   };
 
   return (
-    <div className="card d-flex flex-row align-items-center justify-content-between mb-2">
+    <div className="card border-0 d-flex flex-row align-items-center justify-content-between mb-2">
       <input
         aria-label={message}
         className="checkbox checkbox-main"
@@ -77,20 +77,26 @@ function ItemList({
       </label>
       <div>
         {status === 'soon' && (
-          <i className="fas fa-running" style={{ fontSize: 24 }}></i>
+          <i className="fas fa-running icon-soon" style={{ fontSize: 24 }}></i>
         )}
         {status === 'kind-soon' && (
-          <i className="fas fa-hourglass-half" style={{ fontSize: 24 }}></i>
+          <i
+            className="fas fa-hourglass-half icon-kind-soon"
+            style={{ fontSize: 24 }}
+          ></i>
         )}
         {status === 'not-soon' && (
-          <i className="fas fa-spa" style={{ fontSize: 24 }}></i>
+          <i className="fas fa-spa icon-not-soon" style={{ fontSize: 24 }}></i>
         )}
         {status === 'inactive' && (
-          <i className="fas fa-bell-slash" style={{ fontSize: 24 }}></i>
+          <i
+            className="fas fa-bell-slash icon-inactive"
+            style={{ fontSize: 24 }}
+          ></i>
         )}
 
         <button
-          className="bg-white"
+          className="btn-delete-item"
           aria-label="Button to delete item"
           onClick={openDialogDeleteItem}
         >

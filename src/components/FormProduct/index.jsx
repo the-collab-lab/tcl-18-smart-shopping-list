@@ -93,7 +93,7 @@ export const FormProduct = () => {
               id="option-soon"
             />
             <label className="btn btn-soon" htmlFor="option-soon">
-              Soon
+              <i className="fas fa-running" style={{ fontSize: 24 }}></i>
               <br />
               (1-6 days)
             </label>
@@ -106,7 +106,7 @@ export const FormProduct = () => {
               id="option-kind"
             />
             <label className="btn btn-kind" htmlFor="option-kind">
-              Kind Of Soon
+              <i className="fas fa-hourglass-half" style={{ fontSize: 24 }}></i>
               <br />
               (7-14 days)
             </label>
@@ -119,7 +119,7 @@ export const FormProduct = () => {
               id="option-not-soon"
             />
             <label className="btn btn-not-soon" htmlFor="option-not-soon">
-              Not Soon
+              <i className="fas fa-spa" style={{ fontSize: 24 }}></i>
               <br />
               (15-31 days)
             </label>

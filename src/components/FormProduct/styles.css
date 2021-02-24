@@ -98,6 +98,14 @@ input[type='radio'] {
   margin: 5px;
 }
 
+.radio-buttons input[type='radio'] + .icon-soon {
+  color: #00af91;
+}
+
+.text-soon {
+  color: #00af91;
+}
+
 @media (min-width: 992px) {
   .radio-buttons {
     flex-direction: row;
