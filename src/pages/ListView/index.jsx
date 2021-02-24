@@ -70,22 +70,6 @@ function ListView() {
         </div>
       )}
       {!loading && values.empty && <EmptyList />}
-
-      {/* {(!loading && values.empty && nameFilter.length > 0) && <p aria-live="assertive">Not found products by name: '{nameFilter}'</p>}
-      {(!loading && !values.empty && nameFilter.length > 0) && <ProductList products={productsFiltered} />}
-      <p>loading: {loading}</p>
-      <p>nameFilter: {nameFilter}</p>
-      <p>values: {values.length}</p> */}
-
-      {/* 
-      {!loading && !values.empty && productsFiltered.length === 0 && nameFilter==="" ? (
-        <p aria-live="assertive">Not found products by name: '{nameFilter}'</p>
-      ) : (
-        <>
-          hola!
-          <ProductList products={productsFiltered} />
-        </>
-      )} */}
       <Nav />
     </div>
   );

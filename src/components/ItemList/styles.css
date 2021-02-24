@@ -21,17 +21,17 @@
 
 .label--soon::before,
 .fa-running::before {
-  color: green;
+  color: #00af91;
 }
 
 .label--kind-soon::before,
 .fa-hourglass-half::before {
-  color: orange;
+  color: #ff4301;
 }
 
 .label--not-soon::before,
 .fa-spa::before {
-  color: red;
+  color: #cd0a0a;
 }
 
 .label--inactive::before,

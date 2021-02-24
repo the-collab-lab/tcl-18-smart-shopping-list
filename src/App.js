@@ -11,7 +11,7 @@ function App() {
         <div className="App-Navbar-Top fixed-top">
           <h1>Smart Shopping List</h1>
         </div>
-        <main className="container mt-5 p-3">
+        <main className="container App-Content">
           <AppRoutes />
         </main>
       </BrowserRouter>
