@@ -1,9 +1,11 @@
 import React from 'react';
 import ItemList from 'components/ItemList';
 import { getProductStatus, sortProducts } from 'components/Utils/helpers';
+import './styles.css';
+
 function ProductList({ products }) {
   return (
-    <>
+    <div className="product-list">
       {products && (
         <div>
           {(products || [])
@@ -23,7 +25,7 @@ function ProductList({ products }) {
             ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
 export default ProductList;

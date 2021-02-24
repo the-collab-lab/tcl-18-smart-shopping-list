@@ -8,10 +8,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div className="App-Navbar-Top">
+        <div className="App-Navbar-Top fixed-top">
           <h1>Smart Shopping List</h1>
         </div>
-        <main className="container mt-5 pt-2">
+        <main className="container mt-5 p-3">
           <AppRoutes />
         </main>
       </BrowserRouter>

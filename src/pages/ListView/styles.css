@@ -1,7 +1,14 @@
-.list-view {
-  width: 385px;
-  margin: 20px auto;
+.products {
+  height: 700px;
   background: #ececec;
   box-shadow: 5px 5px 9px #b8b8b8, -5px -5px 9px #ffffff;
-  padding: 15px 0px;
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .products {
+    height: 100%;
+    margin: 50px auto;
+    width: 50%;
+  }
 }

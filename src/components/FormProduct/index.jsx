@@ -43,10 +43,10 @@ export const FormProduct = () => {
     setProduct({ ...initialStateProduct });
   };
   return (
-    <div className="d-flex justify-content-center container-form">
+    <div className="d-flex justify-content-center container-form w-100">
       {error && <p>{error}</p>}
-      <form onSubmit={handleSubmitProduct} className="form-group">
-        <div className="form-group">
+      <form onSubmit={handleSubmitProduct} className="w-100 p-2">
+        <div>
           <label className="form-text" htmlFor="Item-Name">
             Item name:
           </label>
@@ -64,12 +64,12 @@ export const FormProduct = () => {
         </div>
         <div className="mt-3 mb-3">
           <p className="form-text">How soon will you buy this again?</p>
-          <div className="d-flex justify-content-around radio-buttons">
+          <div className="radio-buttons">
             <input
               onChange={handleInputProduct}
               type="radio"
               required="required"
-              name="nextPurchase"
+              name="options"
               value={6}
               id="option-soon"
             />
@@ -82,7 +82,7 @@ export const FormProduct = () => {
               onChange={handleInputProduct}
               type="radio"
               required="required"
-              name="nextPurchase"
+              name="options"
               value={14}
               id="option-kind"
             />
@@ -95,7 +95,7 @@ export const FormProduct = () => {
               onChange={handleInputProduct}
               type="radio"
               required="required"
-              name="nextPurchase"
+              name="options"
               value={31}
               id="option-not-soon"
             />
