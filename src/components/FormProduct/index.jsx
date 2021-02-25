@@ -17,12 +17,14 @@ export const FormProduct = () => {
   const [product, setProduct] = useState(initialStateProduct);
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
+  const [successSave, setSuccessMsg] = useState(false);
   const handleNameInput = (e) => {
     const clone = { ...product };
     clone.item = e.target.value;
     setProduct(clone);
     setError(false);
     setErrorMsg('');
+    setSuccessMsg(false);
   };
   const handleRadioNextPurchase = (e) => {
     const clone = { ...product };
@@ -30,6 +32,7 @@ export const FormProduct = () => {
     setProduct(clone);
     setError(false);
     setErrorMsg('');
+    setSuccessMsg(false);
   };
 
   const handleSubmitProduct = (e) => {
@@ -51,14 +54,17 @@ export const FormProduct = () => {
           setProduct({ ...initialStateProduct });
           setError(false);
           setErrorMsg('');
+          setSuccessMsg(true);
         }
       } else {
         setError(true);
         setErrorMsg('Next Purchase is required');
+        setSuccessMsg(false);
       }
     } else {
       setError(true);
       setErrorMsg('Name is required');
+      setSuccessMsg(false);
     }
   };
 
@@ -83,7 +89,7 @@ export const FormProduct = () => {
         </div>
         <div className="mt-3 mb-3">
           <p className="form-text">How soon will you buy this again?</p>
-          <div className="radio-buttons">
+          <div className="radio-buttons" role="radiogroup">
             <input
               onChange={handleRadioNextPurchase}
               type="radio"
@@ -91,6 +97,7 @@ export const FormProduct = () => {
               name="options"
               value={6}
               id="option-soon"
+              checked={product.nextPurchase === '6' ? true : false}
             />
             <label className="btn btn-soon" htmlFor="option-soon">
               <i className="fas fa-running" style={{ fontSize: 24 }}></i>
@@ -104,6 +111,7 @@ export const FormProduct = () => {
               name="options"
               value={14}
               id="option-kind"
+              checked={product.nextPurchase === '14'}
             />
             <label className="btn btn-kind" htmlFor="option-kind">
               <i className="fas fa-hourglass-half" style={{ fontSize: 24 }}></i>
@@ -117,6 +125,7 @@ export const FormProduct = () => {
               name="options"
               value={31}
               id="option-not-soon"
+              checked={product.nextPurchase === '31'}
             />
             <label className="btn btn-not-soon" htmlFor="option-not-soon">
               <i className="fas fa-spa" style={{ fontSize: 24 }}></i>
@@ -126,8 +135,13 @@ export const FormProduct = () => {
           </div>
         </div>
         {error && (
-          <p aria-live="polite" className="text-danger">
+          <p aria-live="assertive" className="text-danger">
             {errorMsg}
+          </p>
+        )}
+        {successSave && (
+          <p aria-live="polite" className="text-success">
+            Product added successfully!
           </p>
         )}
         <button className="btn w-100 btn-addItem" type="submit">
