@@ -100,7 +100,7 @@ export const FormProduct = () => {
               checked={product.nextPurchase === '6' ? true : false}
             />
             <label className="btn btn-soon" htmlFor="option-soon">
-              <i className="fas fa-running" style={{ fontSize: 24 }}></i>
+              <i class="bi bi-stopwatch-fill" style={{ fontSize: 24 }}></i>
               <br />
               (1-6 days)
             </label>
@@ -114,7 +114,7 @@ export const FormProduct = () => {
               checked={product.nextPurchase === '14'}
             />
             <label className="btn btn-kind" htmlFor="option-kind">
-              <i className="fas fa-hourglass-half" style={{ fontSize: 24 }}></i>
+              <i class="bi bi-calendar2-week-fill" style={{ fontSize: 24 }}></i>
               <br />
               (7-14 days)
             </label>
@@ -128,7 +128,7 @@ export const FormProduct = () => {
               checked={product.nextPurchase === '31'}
             />
             <label className="btn btn-not-soon" htmlFor="option-not-soon">
-              <i className="fas fa-spa" style={{ fontSize: 24 }}></i>
+              <i class="bi bi-pin-angle-fill" style={{ fontSize: 24 }}></i>
               <br />
               (15-31 days)
             </label>

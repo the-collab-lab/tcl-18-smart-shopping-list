@@ -77,20 +77,26 @@ function ItemList({
       </label>
       <div>
         {status === 'soon' && (
-          <i className="fas fa-running icon-soon" style={{ fontSize: 24 }}></i>
+          <i
+            class="bi bi-stopwatch-fill icon-soon"
+            style={{ fontSize: 24 }}
+          ></i>
         )}
         {status === 'kind-soon' && (
           <i
-            className="fas fa-hourglass-half icon-kind-soon"
+            class="bi bi-calendar2-week-fill icon-kind-soon"
             style={{ fontSize: 24 }}
           ></i>
         )}
         {status === 'not-soon' && (
-          <i className="fas fa-spa icon-not-soon" style={{ fontSize: 24 }}></i>
+          <i
+            class="bi bi-pin-angle-fill icon-not-soon"
+            style={{ fontSize: 24 }}
+          ></i>
         )}
         {status === 'inactive' && (
           <i
-            className="fas fa-bell-slash icon-inactive"
+            class="bi bi-calendar2-x-fill icon-inactive"
             style={{ fontSize: 24 }}
           ></i>
         )}

@@ -9,18 +9,18 @@
   border-bottom-right-radius: 6px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  color: gray;
+  color: rgb(68, 65, 65);
   margin-left: 10px;
   padding: 10px;
 }
 
 .btn-delete-item:hover {
-  background-color: #cd0a0a;
+  background-color: #fa341a;
   color: white;
 }
 
 .icon-soon {
-  color: #00af91;
+  color: #01c22b;
 }
 
 .icon-kind-soon {
@@ -32,5 +32,5 @@
 }
 
 .icon-inactive {
-  color: gray;
+  color: rgb(82, 78, 78);
 }
