@@ -39,7 +39,11 @@ export const FormProduct = () => {
     e.preventDefault();
     const { item, nextPurchase } = product;
 
-    if (item.length > 0) {
+    if (item.length <= 0 && nextPurchase <= 0) {
+      setError(true);
+      setErrorMsg('Name and next purchase date are required');
+      setSuccessMsg(false);
+    } else if (item.length > 0) {
       if (nextPurchase > 0) {
         if (isProductDuplicated(products, item)) {
           setError(true);
@@ -58,7 +62,7 @@ export const FormProduct = () => {
         }
       } else {
         setError(true);
-        setErrorMsg('Next Purchase is required');
+        setErrorMsg('Next Purchase date is required');
         setSuccessMsg(false);
       }
     } else {
@@ -100,7 +104,7 @@ export const FormProduct = () => {
               checked={product.nextPurchase === '6' ? true : false}
             />
             <label className="btn btn-soon" htmlFor="option-soon">
-              <i class="bi bi-stopwatch-fill" style={{ fontSize: 24 }}></i>
+              <i className="bi bi-stopwatch-fill" style={{ fontSize: 24 }}></i>
               <br />
               (1-6 days)
             </label>
@@ -114,7 +118,10 @@ export const FormProduct = () => {
               checked={product.nextPurchase === '14'}
             />
             <label className="btn btn-kind" htmlFor="option-kind">
-              <i class="bi bi-calendar2-week-fill" style={{ fontSize: 24 }}></i>
+              <i
+                className="bi bi-calendar2-week-fill"
+                style={{ fontSize: 24 }}
+              ></i>
               <br />
               (7-14 days)
             </label>
@@ -128,7 +135,7 @@ export const FormProduct = () => {
               checked={product.nextPurchase === '31'}
             />
             <label className="btn btn-not-soon" htmlFor="option-not-soon">
-              <i class="bi bi-pin-angle-fill" style={{ fontSize: 24 }}></i>
+              <i className="bi bi-pin-angle-fill" style={{ fontSize: 24 }}></i>
               <br />
               (15-31 days)
             </label>
