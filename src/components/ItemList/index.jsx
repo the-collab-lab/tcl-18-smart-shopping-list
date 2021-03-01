@@ -60,24 +60,55 @@ function ItemList({
   };
 
   return (
-    <div>
-      <label htmlFor={itemName} className={classes}>
-        <input
-          aria-label={message}
-          className="checkbox"
-          type="checkbox"
-          name={itemName}
-          checked={isChecked}
-          value={itemName}
-          onChange={handleCheckbox}
-          disabled={isDisabled}
-        />
+    <div className="card border-0 d-flex flex-row align-items-center justify-content-between mb-2">
+      <input
+        aria-label={message}
+        className="checkbox checkbox-main"
+        type="checkbox"
+        name={itemName}
+        checked={isChecked}
+        value={itemName}
+        onChange={handleCheckbox}
+        disabled={isDisabled}
+      />
 
+      <label htmlFor={itemName} className={classes}>
         {itemName}
       </label>
-      <button aria-label="Button to delete item" onClick={openDialogDeleteItem}>
-        Delete
-      </button>
+      <div>
+        {status === 'soon' && (
+          <i
+            className="bi bi-stopwatch-fill icon-soon"
+            style={{ fontSize: 24 }}
+          ></i>
+        )}
+        {status === 'kind-soon' && (
+          <i
+            className="bi bi-calendar2-week-fill icon-kind-soon"
+            style={{ fontSize: 24 }}
+          ></i>
+        )}
+        {status === 'not-soon' && (
+          <i
+            className="bi bi-pin-angle-fill icon-not-soon"
+            style={{ fontSize: 24 }}
+          ></i>
+        )}
+        {status === 'inactive' && (
+          <i
+            className="bi bi-calendar2-x-fill icon-inactive"
+            style={{ fontSize: 24 }}
+          ></i>
+        )}
+
+        <button
+          className="btn-delete-item"
+          aria-label="Button to delete item"
+          onClick={openDialogDeleteItem}
+        >
+          <i className="bi bi-trash" style={{ fontSize: 24 }}></i>
+        </button>
+      </div>
     </div>
   );
 }

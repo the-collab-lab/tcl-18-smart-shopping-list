@@ -1,36 +1,36 @@
-.label--soon,
-.label--kind-soon,
-.label--not-soon,
-.label--inactive {
-  position: relative;
+.checkbox {
+  margin: 0 15px;
+  transform: scale(2);
 }
 
-.label--soon::before,
-.label--kind-soon::before,
-.label--not-soon::before,
-.label--inactive::before {
-  content: '';
-  position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 7px;
-  width: 7px;
-  border-radius: 50%;
+.btn-delete-item {
+  background-color: white;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: rgb(68, 65, 65);
+  margin-left: 10px;
+  padding: 10px;
 }
 
-.label--soon::before {
-  background-color: green;
+.btn-delete-item:hover {
+  background-color: #fa341a;
+  color: white;
 }
 
-.label--kind-soon::before {
-  background-color: orange;
+.icon-soon {
+  color: #01c22b;
 }
 
-.label--not-soon::before {
-  background-color: red;
+.icon-kind-soon {
+  color: #ff4301;
 }
 
-.label--inactive::before {
-  background-color: gray;
+.icon-not-soon {
+  color: #cd0a0a;
+}
+
+.icon-inactive {
+  color: rgb(82, 78, 78);
 }

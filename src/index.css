@@ -66,25 +66,17 @@ p {
 label {
   font-size: 18px;
   font-weight: bold;
-  padding: 10px;
   margin-right: 5px;
 }
 
 button {
-  background-color: #0cc665;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 22px;
-  padding: 10px;
   border-radius: 6px;
   border: none;
   text-decoration: none;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: #222326;
-  color: #0cc665;
 }
 
 input {

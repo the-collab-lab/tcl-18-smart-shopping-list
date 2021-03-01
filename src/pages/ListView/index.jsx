@@ -35,31 +35,41 @@ function ListView() {
 
   return (
     <div className="list-view">
-      <form>
-        {!!currentProducts.length && (
-          <>
-            <label htmlFor="nameFilter">Filter items</label>
-            <br />
-            <input
-              className="filter-container"
-              type="search"
-              id="nameFilter"
-              placeholder="Start typing here..."
-              value={nameFilter}
-              onChange={handleInput}
-            />
-          </>
-        )}
-      </form>
-      <br />
-      {error && <p aria-live="assertive">Error: {JSON.stringify(error)}</p>}
-      {loading && <p aria-live="polite">List: Loading...</p>}
-      {!loading && values.empty && <EmptyList />}
-      {!loading && !values.empty && productsFiltered.length === 0 ? (
-        <p aria-live="assertive">Not found products by name: '{nameFilter}'</p>
-      ) : (
-        <ProductList products={productsFiltered} />
+      {!!currentProducts.length && (
+        <div className="products p-2">
+          <form>
+            <div className="form-group">
+              <label htmlFor="nameFilter">Filter items</label>
+              <br />
+              <input
+                className="form-control filter-container w-100"
+                type="search"
+                id="nameFilter"
+                placeholder="Start typing here..."
+                value={nameFilter}
+                onChange={handleInput}
+              />
+            </div>
+          </form>
+          <br />
+          {error && <p aria-live="assertive">Error: {JSON.stringify(error)}</p>}
+          {loading && <p aria-live="polite">List: Loading...</p>}
+          {!loading &&
+            Array.isArray(productsFiltered) &&
+            productsFiltered.length === 0 &&
+            nameFilter.length > 0 && (
+              <p aria-live="assertive">
+                Not found products by name: '{nameFilter}'
+              </p>
+            )}
+          {!loading &&
+            Array.isArray(productsFiltered) &&
+            productsFiltered.length > 0 && (
+              <ProductList products={productsFiltered} />
+            )}
+        </div>
       )}
+      {!loading && values.empty && <EmptyList />}
       <Nav />
     </div>
   );

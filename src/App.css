@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.App-Content {
+  margin-top: 105px;
+}
+
 .App-logo {
   height: 40vmin;
 }
@@ -27,8 +31,8 @@
 }
 
 .App-Navbar-Top {
-  height: 55px;
-  justify-content: center;
   background-image: linear-gradient(130deg, #ff9259 0%, #ff2426 70%);
   box-shadow: 5px 5px 9px #b8b8b8, -5px -5px 9px #ffffff;
+  justify-content: center;
+  padding: 10px;
 }

@@ -1,0 +1,12 @@
+.add-item {
+  height: 600px;
+  margin-bottom: 50px;
+}
+
+@media (min-width: 992px) {
+  .add-item {
+    height: 100%;
+    margin: 0 auto;
+    width: 50%;
+  }
+}
