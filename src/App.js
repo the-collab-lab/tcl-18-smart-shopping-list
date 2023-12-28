@@ -1,6 +1,7 @@
 import React from 'react';
 // React Router
 import { BrowserRouter } from 'react-router-dom';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 import './App.css';
 import AppRoutes from 'routes/AppRoutes';
 
@@ -14,6 +15,7 @@ function App() {
         <main className="container App-Content">
           <AppRoutes />
         </main>
+        <ArchivalNoticeModal />
       </BrowserRouter>
     </div>
   );

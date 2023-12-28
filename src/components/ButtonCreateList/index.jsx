@@ -1,5 +1,5 @@
 import React from 'react';
-import getToken from 'lib/tokens';
+// import getToken from 'lib/tokens';
 import { useHistory } from 'react-router-dom';
 import 'components/ButtonCreateList/styles.css';
 import cart from 'components/ButtonCreateList/cart.svg';
@@ -7,9 +7,10 @@ import cart from 'components/ButtonCreateList/cart.svg';
 function ButtonCreateList() {
   let history = useHistory();
   const createNewList = function () {
-    const Token = getToken();
-    localStorage.setItem('tcl18-token', Token);
-    history.push('/list-view');
+    console.log('Creating new lists is disabled');
+    // const Token = getToken();
+    // localStorage.setItem('tcl18-token', Token);
+    // history.push('/list-view');
   };
 
   return (
